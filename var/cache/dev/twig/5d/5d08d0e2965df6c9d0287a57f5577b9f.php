@@ -66,7 +66,8 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        yield "Article index";
+        yield "LineShop
+";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -76,7 +77,7 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
         return; yield '';
     }
 
-    // line 5
+    // line 6
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -86,79 +87,79 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 6
-        yield "    <h1>Article index</h1>
+        // line 7
+        yield "\t<h1>Article index</h1>
 
-    <table class=\"table\">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Image</th>
-                <th>Prix</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        ";
-        // line 20
+\t<table class=\"table\">
+\t\t<thead>
+\t\t\t<tr>
+\t\t\t\t<th>Id</th>
+\t\t\t\t<th>Nom</th>
+\t\t\t\t<th>Image</th>
+\t\t\t\t<th>Prix</th>
+\t\t\t\t<th>Description</th>
+\t\t\t\t<th>actions</th>
+\t\t\t</tr>
+\t\t</thead>
+\t\t<tbody>
+\t\t\t";
+        // line 21
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 20, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 21, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
-            // line 21
-            yield "            <tr>
-                <td>";
             // line 22
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 22), "html", null, true);
-            yield "</td>
-                <td>";
+            yield "\t\t\t\t<tr>
+\t\t\t\t\t<td>";
             // line 23
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 23), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 23), "html", null, true);
             yield "</td>
-                <td>";
+\t\t\t\t\t<td>";
             // line 24
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "image", [], "any", false, false, false, 24), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 24), "html", null, true);
             yield "</td>
-                <td>";
+\t\t\t\t\t<td>";
             // line 25
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 25), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "image", [], "any", false, false, false, 25), "html", null, true);
             yield "</td>
-                <td>";
+\t\t\t\t\t<td>";
             // line 26
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 26), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 26), "html", null, true);
             yield "</td>
-                <td>
-                    <a href=\"";
-            // line 28
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_article_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 28)]), "html", null, true);
-            yield "\">show</a>
-                    <a href=\"";
+\t\t\t\t\t<td>";
+            // line 27
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 27), "html", null, true);
+            yield "</td>
+\t\t\t\t\t<td>
+\t\t\t\t\t\t<a href=\"";
             // line 29
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_article_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 29)]), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_article_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 29)]), "html", null, true);
+            yield "\">show</a>
+\t\t\t\t\t\t<a href=\"";
+            // line 30
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_article_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 30)]), "html", null, true);
             yield "\">edit</a>
-                </td>
-            </tr>
-        ";
+\t\t\t\t\t</td>
+\t\t\t\t</tr>
+\t\t\t";
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 33
-            yield "            <tr>
-                <td colspan=\"6\">no records found</td>
-            </tr>
-        ";
+            // line 34
+            yield "\t\t\t\t<tr>
+\t\t\t\t\t<td colspan=\"6\">no records found</td>
+\t\t\t\t</tr>
+\t\t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['article'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 37
-        yield "        </tbody>
-    </table>
+        // line 38
+        yield "\t\t</tbody>
+\t</table>
 
-    <a href=\"";
-        // line 40
+\t<a href=\"";
+        // line 41
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_article_new");
         yield "\">Create new</a>
 ";
@@ -192,51 +193,52 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  162 => 40,  157 => 37,  148 => 33,  139 => 29,  135 => 28,  130 => 26,  126 => 25,  122 => 24,  118 => 23,  114 => 22,  111 => 21,  106 => 20,  90 => 6,  80 => 5,  60 => 3,  37 => 1,);
+        return array (  163 => 41,  158 => 38,  149 => 34,  140 => 30,  136 => 29,  131 => 27,  127 => 26,  123 => 25,  119 => 24,  115 => 23,  112 => 22,  107 => 21,  91 => 7,  81 => 6,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block title %}Article index{% endblock %}
+{% block title %}LineShop
+{% endblock %}
 
 {% block body %}
-    <h1>Article index</h1>
+\t<h1>Article index</h1>
 
-    <table class=\"table\">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Image</th>
-                <th>Prix</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.nom }}</td>
-                <td>{{ article.image }}</td>
-                <td>{{ article.prix }}</td>
-                <td>{{ article.description }}</td>
-                <td>
-                    <a href=\"{{ path('app_article_show', {'id': article.id}) }}\">show</a>
-                    <a href=\"{{ path('app_article_edit', {'id': article.id}) }}\">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan=\"6\">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+\t<table class=\"table\">
+\t\t<thead>
+\t\t\t<tr>
+\t\t\t\t<th>Id</th>
+\t\t\t\t<th>Nom</th>
+\t\t\t\t<th>Image</th>
+\t\t\t\t<th>Prix</th>
+\t\t\t\t<th>Description</th>
+\t\t\t\t<th>actions</th>
+\t\t\t</tr>
+\t\t</thead>
+\t\t<tbody>
+\t\t\t{% for article in articles %}
+\t\t\t\t<tr>
+\t\t\t\t\t<td>{{ article.id }}</td>
+\t\t\t\t\t<td>{{ article.nom }}</td>
+\t\t\t\t\t<td>{{ article.image }}</td>
+\t\t\t\t\t<td>{{ article.prix }}</td>
+\t\t\t\t\t<td>{{ article.description }}</td>
+\t\t\t\t\t<td>
+\t\t\t\t\t\t<a href=\"{{ path('app_article_show', {'id': article.id}) }}\">show</a>
+\t\t\t\t\t\t<a href=\"{{ path('app_article_edit', {'id': article.id}) }}\">edit</a>
+\t\t\t\t\t</td>
+\t\t\t\t</tr>
+\t\t\t{% else %}
+\t\t\t\t<tr>
+\t\t\t\t\t<td colspan=\"6\">no records found</td>
+\t\t\t\t</tr>
+\t\t\t{% endfor %}
+\t\t</tbody>
+\t</table>
 
-    <a href=\"{{ path('app_article_new') }}\">Create new</a>
+\t<a href=\"{{ path('app_article_new') }}\">Create new</a>
 {% endblock %}
 ", "article/index.html.twig", "/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/templates/article/index.html.twig");
     }
