@@ -25,6 +25,7 @@
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
       <parameter key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</parameter>
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle">SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -74,6 +75,10 @@
       <parameter key="MakerBundle" type="collection">
         <parameter key="path">C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\maker-bundle\src</parameter>
         <parameter key="namespace">Symfony\Bundle\MakerBundle</parameter>
+      </parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle" type="collection">
+        <parameter key="path">C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src</parameter>
+        <parameter key="namespace">SymfonyCasts\Bundle\VerifyEmail</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -396,7 +401,9 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Security\EmailVerifier" class="App\Security\EmailVerifier" autowire="true" autoconfigure="true">
-      <tag name="container.error" message="Cannot autowire service &quot;App\Security\EmailVerifier&quot;: argument &quot;$verifyEmailHelper&quot; of method &quot;__construct()&quot; has type &quot;SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface&quot; but this class was not found."/>
+      <argument type="service" id="symfonycasts.verify_email.helper"/>
+      <argument type="service" id="mailer.mailer"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
     <service id="App\Security\UserAuthenticator" class="App\Security\UserAuthenticator" autowire="true" autoconfigure="true">
       <argument type="service" id="router.default"/>
@@ -1225,6 +1232,7 @@
         <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations</argument>
         <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations</argument>
         <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations</argument>
+        <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\twig-bridge/Resources/views/Email</argument>
@@ -1251,6 +1259,7 @@
         <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations</argument>
         <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations</argument>
         <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations</argument>
+        <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\twig-bridge/Resources/views/Email</argument>
@@ -2062,6 +2071,7 @@
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.ar.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.ar.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.ar.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ar.xlf</argument>
           </argument>
           <argument key="az" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.az.xlf</argument>
@@ -2087,11 +2097,13 @@
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.ca.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.ca.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.ca.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ca.xlf</argument>
           </argument>
           <argument key="cs" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.cs.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.cs.xlf</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.cy.xlf</argument>
@@ -2107,21 +2119,25 @@
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.de.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.de.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.de.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.de.xlf</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.el.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.el.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.el.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.el.xlf</argument>
           </argument>
           <argument key="en" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.en.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.en.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.en.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.en.xlf</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.es.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.es.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.es.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.es.xlf</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.et.xlf</argument>
@@ -2137,16 +2153,19 @@
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.fa.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.fa.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.fa.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.fa.xlf</argument>
           </argument>
           <argument key="fi" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.fi.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.fi.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.fi.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.fi.xlf</argument>
           </argument>
           <argument key="fr" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.fr.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.fr.xlf</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.gl.xlf</argument>
@@ -2167,6 +2186,7 @@
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.hu.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.hu.xlf</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.hy.xlf</argument>
@@ -2177,16 +2197,19 @@
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.id.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.id.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.id.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.id.xlf</argument>
           </argument>
           <argument key="it" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.it.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.it.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.it.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.it.xlf</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.ja.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.ja.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.ja.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ja.xlf</argument>
           </argument>
           <argument key="lb" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.lb.xlf</argument>
@@ -2207,11 +2230,13 @@
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.mk.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.mk.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.mk.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.mk.xlf</argument>
           </argument>
           <argument key="mn" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.mn.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.mn.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.mn.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.mn.xlf</argument>
           </argument>
           <argument key="my" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.my.xlf</argument>
@@ -2227,6 +2252,7 @@
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.nl.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle+intl-icu.nl.xlf</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.nn.xlf</argument>
@@ -2242,11 +2268,13 @@
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.pl.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.pl.xlf</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.pt.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.pt.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.pt.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.pt.xlf</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.pt_BR.xlf</argument>
@@ -2257,16 +2285,19 @@
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.ro.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.ro.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.ro.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ro.xlf</argument>
           </argument>
           <argument key="ru" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.ru.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.ru.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.ru.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ru.xlf</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.sk.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.sk.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.sk.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.sk.xlf</argument>
           </argument>
           <argument key="sl" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.sl.xlf</argument>
@@ -2307,11 +2338,13 @@
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.tr.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.tr.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.tr.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.tr.xlf</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.uk.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.uk.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.uk.xlf</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.uk.xlf</argument>
           </argument>
           <argument key="ur" type="collection">
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations\validators.ur.xlf</argument>
@@ -2338,11 +2371,15 @@
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations\validators.zh_TW.xlf</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations\security.zh_TW.xlf</argument>
           </argument>
+          <argument key="sr" type="collection">
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.sr.xlf</argument>
+          </argument>
         </argument>
         <argument key="scanned_directories" type="collection">
           <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations</argument>
           <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations</argument>
           <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations</argument>
+          <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
           <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop/translations</argument>
           <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\framework-bundle/translations</argument>
           <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -2362,6 +2399,7 @@
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\validator/Resources/translations</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\form/Resources/translations</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\security-core/Resources/translations</argument>
+            <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
             <argument>translations</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\symfony\framework-bundle/translations</argument>
             <argument>C:\Users\Cash\Desktop\SYMFONY\Lineshop\lineshop\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -7133,6 +7171,24 @@
       <argument type="service" id="maker.file_manager"/>
       <argument type="service" id="maker.generator"/>
     </service>
+    <service id="symfonycasts.verify_email.token_generator" class="SymfonyCasts\Bundle\VerifyEmail\Generator\VerifyEmailTokenGenerator">
+      <argument>%env(APP_SECRET)%</argument>
+    </service>
+    <service id="symfonycasts.verify_email.query_utility" class="SymfonyCasts\Bundle\VerifyEmail\Util\VerifyEmailQueryUtility"/>
+    <service id="symfonycasts.verify_email.uri_signer_factory" class="SymfonyCasts\Bundle\VerifyEmail\Factory\UriSignerFactory">
+      <argument>%env(APP_SECRET)%</argument>
+      <argument>signature</argument>
+    </service>
+    <service id="symfonycasts.verify_email.uri_signer" class="Symfony\Component\HttpFoundation\UriSigner">
+      <factory service="symfonycasts.verify_email.uri_signer_factory" method="createUriSigner"/>
+    </service>
+    <service id="symfonycasts.verify_email.helper" class="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelper">
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="symfonycasts.verify_email.uri_signer"/>
+      <argument type="service" id="symfonycasts.verify_email.query_utility"/>
+      <argument type="service" id="symfonycasts.verify_email.token_generator"/>
+      <argument>3600</argument>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -9823,6 +9879,7 @@
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
+    <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.bJ.4HC5" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
     <service id="argument_resolver.controller_locator" alias=".service_locator.MZYkhID"/>
