@@ -1,0 +1,20 @@
+.navbar-brand small {
+    display: block;
+    font-size: 0.7rem;
+    line-height: 1.2;
+}
+
+.cart-info {
+    display: flex;
+    align-items: center;
+}
+
+.cart-info>div {
+    margin-left: 1rem;
+}
+
+nav a,
+footer a {
+    text-decoration: none;
+
+}
