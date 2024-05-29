@@ -18,3 +18,13 @@ footer a {
     text-decoration: none;
 
 }
+
+#item-count,
+#total-amount {
+    color: white;
+    text-align: center;
+}
+
+body {
+    background-color: white !important;
+}
