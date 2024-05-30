@@ -25,6 +25,15 @@ footer a {
     text-align: center;
 }
 
-body {
-    background-color: white !important;
+/* 
+img {
+    width: 150px;
+    height: 200px;
+
+
+} */
+
+img {
+
+    object-fit: contain;
 }
