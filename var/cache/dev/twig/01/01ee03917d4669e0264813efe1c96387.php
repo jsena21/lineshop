@@ -182,6 +182,6 @@ class __TwigTemplate_2251f0510e804c89565588d6f061cc32 extends Template
         {%- endfor -%}
     </pre>
 {% endif %}
-", "@Doctrine/Collector/explain.html.twig", "/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/lineshop/vendor/doctrine/doctrine-bundle/templates/Collector/explain.html.twig");
+", "@Doctrine/Collector/explain.html.twig", "/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/doctrine/doctrine-bundle/templates/Collector/explain.html.twig");
     }
 }

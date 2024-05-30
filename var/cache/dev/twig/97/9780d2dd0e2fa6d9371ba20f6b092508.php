@@ -146,6 +146,6 @@ class __TwigTemplate_e8f208aa0bd70b26be09650b4b33b247 extends Template
         {% endfor %}
     </tbody>
 </table>
-", "@WebProfiler/Profiler/bag.html.twig", "/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/lineshop/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/bag.html.twig");
+", "@WebProfiler/Profiler/bag.html.twig", "/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/bag.html.twig");
     }
 }

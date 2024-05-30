@@ -180,6 +180,6 @@ class __TwigTemplate_6a0a8f39ade0c73c83945633000376df extends Template
 
     {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { link: false }) }}
 {% endblock %}
-", "@WebProfiler/Collector/ajax.html.twig", "/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/lineshop/vendor/symfony/web-profiler-bundle/Resources/views/Collector/ajax.html.twig");
+", "@WebProfiler/Collector/ajax.html.twig", "/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/web-profiler-bundle/Resources/views/Collector/ajax.html.twig");
     }
 }

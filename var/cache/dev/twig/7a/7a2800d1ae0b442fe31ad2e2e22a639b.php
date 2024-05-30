@@ -363,6 +363,6 @@ class __TwigTemplate_31ea303a9841d7d532be9cf6fe86e431 extends Template
         </div>
     </form>
 </div>
-", "@WebProfiler/Profiler/search.html.twig", "/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/lineshop/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/search.html.twig");
+", "@WebProfiler/Profiler/search.html.twig", "/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/search.html.twig");
     }
 }
