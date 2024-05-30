@@ -25,7 +25,13 @@ footer a {
     text-align: center;
 }
 
-/* img {
+body {
+    background-color: white !important;
+}
+
+img {
 
     object-fit: contain;
-} */
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
