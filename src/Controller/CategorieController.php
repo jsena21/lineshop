@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+use App\Repository\ArticleRepository;
+
+
 #[Route('/categorie')]
 class CategorieController extends AbstractController
 {
@@ -21,6 +24,7 @@ class CategorieController extends AbstractController
             'categories' => $categorieRepository->findAll(),
         ]);
     }
+
 
     #[Route('/new', name: 'app_categorie_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -71,11 +75,29 @@ class CategorieController extends AbstractController
     #[Route('/{id}', name: 'app_categorie_delete', methods: ['POST'])]
     public function delete(Request $request, Categorie $categorie, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$categorie->getId(), $request->getPayload()->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $categorie->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($categorie);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/see/consoles', name: 'category_consoles')]
+    public function consoles(ArticleRepository $articleRepository): Response
+    {
+        $consolesArticles = $articleRepository->findByCategoryName('Consoles');
+        return $this->render('home/index.html.twig', [
+            'articles' => $consolesArticles,
+        ]);
+    }
+
+    #[Route('/see/jeux', name: 'category_jeux')]
+    public function jeux(ArticleRepository $articleRepository): Response
+    {
+        $jeuxArticles = $articleRepository->findByCategoryName('Jeux');
+        return $this->render('home/index.html.twig', [
+            'articles' => $jeuxArticles,
+        ]);
     }
 }
