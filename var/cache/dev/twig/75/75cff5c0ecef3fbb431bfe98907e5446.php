@@ -30,9 +30,9 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         $this->blocks = [
             'title' => [$this, 'block_title'],
             'stylesheets' => [$this, 'block_stylesheets'],
+            'body' => [$this, 'block_body'],
             'javascripts' => [$this, 'block_javascripts'],
             'importmap' => [$this, 'block_importmap'],
-            'body' => [$this, 'block_body'],
         ];
     }
 
@@ -56,22 +56,74 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         yield from $this->unwrap()->yieldBlock('title', $context, $blocks);
         // line 8
         yield "\t\t</title>
-\t\t<link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>\"> ";
-        // line 9
-        yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 10
-        yield "
+\t\t<link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>\">
 \t\t";
-        // line 11
-        yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 16
+        // line 10
+        yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
+        // line 14
         yield "\t</head>
 \t<body>
-\t\t";
-        // line 18
+\t\t<header>
+\t\t\t<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">
+\t\t\t\t<div class=\"container-fluid\">
+\t\t\t\t\t<a class=\"navbar-brand\" href=\"#\">
+\t\t\t\t\t\tLineshoP
+\t\t\t\t\t\t<small>the best online shop, for real</small>
+\t\t\t\t\t</a>
+\t\t\t\t\t<div class=\"d-flex align-items-center\">
+\t\t\t\t\t\t<div class=\"cart-info\">
+\t\t\t\t\t\t\t<i class=\"fas fa-shopping-cart fa-2x\"></i>
+\t\t\t\t\t\t\t<div>
+\t\t\t\t\t\t\t\t<div>Items</div>
+\t\t\t\t\t\t\t\t<div id=\"item-count\">0</div>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t<div>
+\t\t\t\t\t\t\t\t<div>Total</div>
+\t\t\t\t\t\t\t\t<div id=\"total-amount\">\$0.00</div>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</nav>
+\t\t</header>
+
+\t\t<main>
+\t\t\t";
+        // line 41
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 19
-        yield "\t</body>
+        // line 42
+        yield "\t\t</main>
+
+\t\t<footer
+\t\t\tclass=\"bg-black text-center text-white fixed-bottom  py-4 fw-bold mt-2ps-2 \">
+\t\t\t<!-- Copyright -->
+\t\t\t<div>
+\t\t\t\t© 2024 Copyright :
+\t\t\t\t<a class=\"text-white\" href=\"https://github.com/sikourix\" target=\"_blank\">
+\t\t\t\t\tFarid
+\t\t\t\t</a>
+\t\t\t\t<a class=\"text-white\" href=\"https://github.com/Hakim-Lakehal\" target=\"_blank\">
+\t\t\t\t\tHakim
+\t\t\t\t</a>
+\t\t\t\t<a class=\"text-white\" href=\"https://github.com/jsena21\" target=\"_blank\">
+\t\t\t\t\tJordan</a>
+\t\t\t\t<a class=\"text-white\" href=\"https://github.com/SuperClodo\" target=\"_blank\">
+\t\t\t\t\tStephane
+\t\t\t\t</a>
+\t\t\t</div>
+
+
+\t\t\t<p>Espace à enlever</p>
+
+\t\t</footer>
+
+\t\t";
+        // line 67
+        yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
+        // line 76
+        yield "
+
+\t</body>
 </html>
 ";
         
@@ -93,7 +145,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        yield "LineShop
+        yield "Welcome!
 \t\t\t";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -104,7 +156,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         return; yield '';
     }
 
-    // line 9
+    // line 10
     public function block_stylesheets($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -114,30 +166,13 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
-
-        
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
-
-        return; yield '';
-    }
-
-    // line 11
-    public function block_javascripts($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
-
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
-
+        // line 11
+        yield "\t\t\t<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\" crossorigin=\"anonymous\">
+\t\t\t<link rel=\"stylesheet\" href=\"";
         // line 12
-        yield "\t\t\t";
-        yield from $this->unwrap()->yieldBlock('importmap', $context, $blocks);
-        // line 15
-        yield "\t\t";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("styles/base.css"), "html", null, true);
+        yield "\">
+\t\t";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -147,31 +182,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         return; yield '';
     }
 
-    // line 12
-    public function block_importmap($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "importmap"));
-
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "importmap"));
-
-        // line 13
-        yield "\t\t\t\t";
-        yield $this->env->getRuntime('Symfony\Bridge\Twig\Extension\ImportMapRuntime')->importmap("app");
-        yield "
-\t\t\t";
-        
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
-
-        
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
-
-        return; yield '';
-    }
-
-    // line 18
+    // line 41
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -181,6 +192,58 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        return; yield '';
+    }
+
+    // line 67
+    public function block_javascripts($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        // line 68
+        yield "\t\t\t";
+        yield from $this->unwrap()->yieldBlock('importmap', $context, $blocks);
+        // line 71
+        yield "\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js\"></script>
+\t\t\t<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js\"></script>
+\t\t\t<script defer src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>
+\t\t\t<script src=\"https://kit.fontawesome.com/a076d05399.js\" crossorigin=\"anonymous\"></script>
+\t\t";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        return; yield '';
+    }
+
+    // line 68
+    public function block_importmap($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "importmap"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "importmap"));
+
+        // line 69
+        yield "\t\t\t\t";
+        yield $this->env->getRuntime('Symfony\Bridge\Twig\Extension\ImportMapRuntime')->importmap("app");
+        yield "
+\t\t\t";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -203,7 +266,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  175 => 18,  161 => 13,  151 => 12,  140 => 15,  137 => 12,  127 => 11,  108 => 9,  87 => 6,  74 => 19,  72 => 18,  68 => 16,  66 => 11,  63 => 10,  61 => 9,  58 => 8,  56 => 6,  49 => 1,);
+        return array (  243 => 69,  233 => 68,  218 => 71,  215 => 68,  205 => 67,  186 => 41,  173 => 12,  170 => 11,  160 => 10,  139 => 6,  124 => 76,  122 => 67,  95 => 42,  93 => 41,  64 => 14,  62 => 10,  58 => 8,  56 => 6,  49 => 1,);
     }
 
     public function getSourceContext()
@@ -213,19 +276,78 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 \t<head>
 \t\t<meta charset=\"UTF-8\">
 \t\t<title>
-\t\t\t{% block title %}LineShop
+\t\t\t{% block title %}Welcome!
 \t\t\t{% endblock %}
 \t\t</title>
-\t\t<link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>\"> {% block stylesheets %}{% endblock %}
+\t\t<link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>\">
+\t\t{% block stylesheets %}
+\t\t\t<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\" crossorigin=\"anonymous\">
+\t\t\t<link rel=\"stylesheet\" href=\"{{ asset('styles/base.css') }}\">
+\t\t{% endblock %}
+\t</head>
+\t<body>
+\t\t<header>
+\t\t\t<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">
+\t\t\t\t<div class=\"container-fluid\">
+\t\t\t\t\t<a class=\"navbar-brand\" href=\"#\">
+\t\t\t\t\t\tLineshoP
+\t\t\t\t\t\t<small>the best online shop, for real</small>
+\t\t\t\t\t</a>
+\t\t\t\t\t<div class=\"d-flex align-items-center\">
+\t\t\t\t\t\t<div class=\"cart-info\">
+\t\t\t\t\t\t\t<i class=\"fas fa-shopping-cart fa-2x\"></i>
+\t\t\t\t\t\t\t<div>
+\t\t\t\t\t\t\t\t<div>Items</div>
+\t\t\t\t\t\t\t\t<div id=\"item-count\">0</div>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t<div>
+\t\t\t\t\t\t\t\t<div>Total</div>
+\t\t\t\t\t\t\t\t<div id=\"total-amount\">\$0.00</div>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</nav>
+\t\t</header>
+
+\t\t<main>
+\t\t\t{% block body %}{% endblock %}
+\t\t</main>
+
+\t\t<footer
+\t\t\tclass=\"bg-black text-center text-white fixed-bottom  py-4 fw-bold mt-2ps-2 \">
+\t\t\t<!-- Copyright -->
+\t\t\t<div>
+\t\t\t\t© 2024 Copyright :
+\t\t\t\t<a class=\"text-white\" href=\"https://github.com/sikourix\" target=\"_blank\">
+\t\t\t\t\tFarid
+\t\t\t\t</a>
+\t\t\t\t<a class=\"text-white\" href=\"https://github.com/Hakim-Lakehal\" target=\"_blank\">
+\t\t\t\t\tHakim
+\t\t\t\t</a>
+\t\t\t\t<a class=\"text-white\" href=\"https://github.com/jsena21\" target=\"_blank\">
+\t\t\t\t\tJordan</a>
+\t\t\t\t<a class=\"text-white\" href=\"https://github.com/SuperClodo\" target=\"_blank\">
+\t\t\t\t\tStephane
+\t\t\t\t</a>
+\t\t\t</div>
+
+
+\t\t\t<p>Espace à enlever</p>
+
+\t\t</footer>
 
 \t\t{% block javascripts %}
 \t\t\t{% block importmap %}
 \t\t\t\t{{ importmap('app') }}
 \t\t\t{% endblock %}
+\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js\"></script>
+\t\t\t<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js\"></script>
+\t\t\t<script defer src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>
+\t\t\t<script src=\"https://kit.fontawesome.com/a076d05399.js\" crossorigin=\"anonymous\"></script>
 \t\t{% endblock %}
-\t</head>
-\t<body>
-\t\t{% block body %}{% endblock %}
+
+
 \t</body>
 </html>
 ", "base.html.twig", "/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/templates/base.html.twig");

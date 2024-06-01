@@ -162,7 +162,101 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
         // line 41
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_article_new");
         yield "\">Create new</a>
-";
+\t<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">
+\t\t<a class=\"navbar-brand\" href=\"#\">LineShoP</a>
+\t\t<div class=\"collapse navbar-collapse\">
+\t\t\t<ul class=\"navbar-nav mr-auto\">
+\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t<a class=\"nav-link\" href=\"#\">All Categories</a>
+\t\t\t\t</li>
+\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t<a class=\"nav-link\" href=\"#\">Consoles</a>
+\t\t\t\t</li>
+\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t<a class=\"nav-link\" href=\"#\">Jeux</a>
+\t\t\t\t</li>
+\t\t\t</ul>
+\t\t\t<span class=\"navbar-text\">
+\t\t\t\tWelcome aaa@a.fr |
+\t\t\t\t<a href=\"#\">Logout</a>
+\t\t\t</span>
+\t\t\t<div class=\"ml-3\">
+\t\t\t\t<span>Items: 1</span>
+\t\t\t\t|
+\t\t\t\t<span>Total: 309 €</span>
+\t\t\t</div>
+\t\t</div>
+\t</nav>
+
+\t<div class=\"container mt-5\">
+\t\t<div class=\"row\">
+\t\t\t<div class=\"col-md-4\">
+\t\t\t\t<div class=\"card mb-4\">
+\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Console PS4\">
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<h5 class=\"card-title\">Console PS4</h5>
+\t\t\t\t\t\t<p class=\"card-text\">299 €</p>
+\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">Add to cart</a>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t\t<div class=\"col-md-4\">
+\t\t\t\t<div class=\"card mb-4\">
+\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Console Wii U\">
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<h5 class=\"card-title\">Console Wii U</h5>
+\t\t\t\t\t\t<p class=\"card-text\">489 €</p>
+\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">Add to cart</a>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t\t<div class=\"col-md-4\">
+\t\t\t\t<div class=\"card mb-4\">
+\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Console Xbox 360\">
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<h5 class=\"card-title\">Console Xbox 360</h5>
+\t\t\t\t\t\t<p class=\"card-text\">309 €</p>
+\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">Add to cart</a>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t\t<div class=\"col-md-4\">
+\t\t\t\t<div class=\"card mb-4\">
+\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Assassin's Creed PS4\">
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<h5 class=\"card-title\">Assassin's Creed PS4</h5>
+\t\t\t\t\t\t<p class=\"card-text\">66 €</p>
+\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">Add to cart</a>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t\t<div class=\"col-md-4\">
+\t\t\t\t<div class=\"card mb-4\">
+\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Dragon Ball Fighter\">
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<h5 class=\"card-title\">Dragon Ball Fighter</h5>
+\t\t\t\t\t\t<p class=\"card-text\">55 €</p>
+\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">Add to cart</a>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t\t<div class=\"col-md-4\">
+\t\t\t\t<div class=\"card mb-4\">
+\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Zombi U Wii U\">
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<h5 class=\"card-title\">Zombi U Wii U</h5>
+\t\t\t\t\t\t<p class=\"card-text\">19 €</p>
+\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">Add to cart</a>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t</div>
+\t</div>
+
+\t<script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script>
+\t<script src=\"https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js\"></script>
+\t<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js\"></script>
+</body>";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -239,7 +333,101 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
 \t</table>
 
 \t<a href=\"{{ path('app_article_new') }}\">Create new</a>
-{% endblock %}
+\t<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">
+\t\t<a class=\"navbar-brand\" href=\"#\">LineShoP</a>
+\t\t<div class=\"collapse navbar-collapse\">
+\t\t\t<ul class=\"navbar-nav mr-auto\">
+\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t<a class=\"nav-link\" href=\"#\">All Categories</a>
+\t\t\t\t</li>
+\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t<a class=\"nav-link\" href=\"#\">Consoles</a>
+\t\t\t\t</li>
+\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t<a class=\"nav-link\" href=\"#\">Jeux</a>
+\t\t\t\t</li>
+\t\t\t</ul>
+\t\t\t<span class=\"navbar-text\">
+\t\t\t\tWelcome aaa@a.fr |
+\t\t\t\t<a href=\"#\">Logout</a>
+\t\t\t</span>
+\t\t\t<div class=\"ml-3\">
+\t\t\t\t<span>Items: 1</span>
+\t\t\t\t|
+\t\t\t\t<span>Total: 309 €</span>
+\t\t\t</div>
+\t\t</div>
+\t</nav>
+
+\t<div class=\"container mt-5\">
+\t\t<div class=\"row\">
+\t\t\t<div class=\"col-md-4\">
+\t\t\t\t<div class=\"card mb-4\">
+\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Console PS4\">
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<h5 class=\"card-title\">Console PS4</h5>
+\t\t\t\t\t\t<p class=\"card-text\">299 €</p>
+\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">Add to cart</a>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t\t<div class=\"col-md-4\">
+\t\t\t\t<div class=\"card mb-4\">
+\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Console Wii U\">
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<h5 class=\"card-title\">Console Wii U</h5>
+\t\t\t\t\t\t<p class=\"card-text\">489 €</p>
+\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">Add to cart</a>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t\t<div class=\"col-md-4\">
+\t\t\t\t<div class=\"card mb-4\">
+\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Console Xbox 360\">
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<h5 class=\"card-title\">Console Xbox 360</h5>
+\t\t\t\t\t\t<p class=\"card-text\">309 €</p>
+\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">Add to cart</a>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t\t<div class=\"col-md-4\">
+\t\t\t\t<div class=\"card mb-4\">
+\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Assassin's Creed PS4\">
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<h5 class=\"card-title\">Assassin's Creed PS4</h5>
+\t\t\t\t\t\t<p class=\"card-text\">66 €</p>
+\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">Add to cart</a>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t\t<div class=\"col-md-4\">
+\t\t\t\t<div class=\"card mb-4\">
+\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Dragon Ball Fighter\">
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<h5 class=\"card-title\">Dragon Ball Fighter</h5>
+\t\t\t\t\t\t<p class=\"card-text\">55 €</p>
+\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">Add to cart</a>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t\t<div class=\"col-md-4\">
+\t\t\t\t<div class=\"card mb-4\">
+\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Zombi U Wii U\">
+\t\t\t\t\t<div class=\"card-body\">
+\t\t\t\t\t\t<h5 class=\"card-title\">Zombi U Wii U</h5>
+\t\t\t\t\t\t<p class=\"card-text\">19 €</p>
+\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">Add to cart</a>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t</div>
+\t</div>
+
+\t<script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script>
+\t<script src=\"https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js\"></script>
+\t<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js\"></script>
+</body>{% endblock %}
 ", "article/index.html.twig", "/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/templates/article/index.html.twig");
     }
 }
