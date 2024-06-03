@@ -5,6 +5,11 @@
     color: white;
 }
 
+main{
+    min-height: 84vh;
+}
+
+
 nav{
     background-color: #2b384b;
     color: white;
@@ -22,6 +27,10 @@ nav small{
 }
 
 a{
+    text-decoration: none;
+}
+
+a:hover{
     text-decoration: none;
 }
 

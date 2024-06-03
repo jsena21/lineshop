@@ -88,12 +88,30 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 7
-        yield "
-\t\t<p class=\"text\">
-\t\tWelcome aaa@a.fr you can
-\t\t<a class=\"logout\" href=\"#\">Logout</a>
-\t</p>
-\t<ul>
+        yield "\t";
+        if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "user", [], "any", true, true, false, 7)) {
+            // line 8
+            yield "\t\t<p class=\"text\">
+\t\t\tWelcome aaa@a.fr you can
+\t\t\t<a class=\"logout\" href=\"";
+            // line 10
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+            yield "\">Logout</a>
+\t\t</p>
+\t";
+        } else {
+            // line 13
+            yield "\t\t<p class=\"text\">
+\t\t\tWelcome, you can
+\t\t\t<a class=\"logout\" href=\"";
+            // line 15
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            yield "\">Login</a>
+\t\t</p>
+\t";
+        }
+        // line 18
+        yield "\t<ul>
 \t\t<li>
 \t\t\t<a href=\"#\">All Categories</a>
 \t\t</li>
@@ -209,7 +227,7 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  91 => 7,  81 => 6,  60 => 3,  37 => 1,);
+        return array (  114 => 18,  108 => 15,  104 => 13,  98 => 10,  94 => 8,  91 => 7,  81 => 6,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -220,12 +238,17 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
 {% endblock %}
 
 {% block body %}
-
-\t{# <a href=\"{{ path('app_article_new') }}\">Create new</a> #}
-\t<p class=\"text\">
-\t\tWelcome aaa@a.fr you can
-\t\t<a class=\"logout\" href=\"#\">Logout</a>
-\t</p>
+\t{% if session.user is defined %}
+\t\t<p class=\"text\">
+\t\t\tWelcome aaa@a.fr you can
+\t\t\t<a class=\"logout\" href=\"{{path('app_logout')}}\">Logout</a>
+\t\t</p>
+\t{% else %}
+\t\t<p class=\"text\">
+\t\t\tWelcome, you can
+\t\t\t<a class=\"logout\" href=\"{{path('app_login')}}\">Login</a>
+\t\t</p>
+\t{% endif %}
 \t<ul>
 \t\t<li>
 \t\t\t<a href=\"#\">All Categories</a>

@@ -4,12 +4,17 @@
 {% endblock %}
 
 {% block body %}
-
-	{# <a href="{{ path('app_article_new') }}">Create new</a> #}
-	<p class="text">
-		Welcome aaa@a.fr you can
-		<a class="logout" href="#">Logout</a>
-	</p>
+	{% if session.user is defined %}
+		<p class="text">
+			Welcome aaa@a.fr you can
+			<a class="logout" href="{{path('app_logout')}}">Logout</a>
+		</p>
+	{% else %}
+		<p class="text">
+			Welcome, you can
+			<a class="logout" href="{{path('app_login')}}">Login</a>
+		</p>
+	{% endif %}
 	<ul>
 		<li>
 			<a href="#">All Categories</a>
