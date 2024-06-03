@@ -11,11 +11,10 @@
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 
-                {% if app.user %}
-                    <div class="mb-3">
+                {# {% if app.user %}
                         You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
                     </div>
-                {% endif %}
+                {% endif %} #}
 
                 <h1 class="h3 mb-3 font-weight-normal text-center">Login</h1>
                 <div class="text-center mb-3">

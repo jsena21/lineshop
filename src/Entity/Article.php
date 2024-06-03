@@ -19,8 +19,8 @@ class Article
     #[ORM\Column(length: 100)]
     private ?string $nom = null;
 
-    #[ORM\Column(type: Types::BLOB)]
-    private $image;
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
     private ?string $prix = null;

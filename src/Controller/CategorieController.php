@@ -84,7 +84,7 @@ class CategorieController extends AbstractController
     public function consoles(ArticleRepository $articleRepository): Response
     {
         $consolesArticles = $articleRepository->findByCategoryName('Consoles');
-        return $this->render('home/index.html.twig', [
+        return $this->render('article/index.html.twig', [
             'articles' => $consolesArticles,
         ]);
     }
@@ -93,7 +93,7 @@ class CategorieController extends AbstractController
     public function jeux(ArticleRepository $articleRepository): Response
     {
         $jeuxArticles = $articleRepository->findByCategoryName('Jeux');
-        return $this->render('home/index.html.twig', [
+        return $this->render('article/index.html.twig', [
             'articles' => $jeuxArticles,
         ]);
     }
