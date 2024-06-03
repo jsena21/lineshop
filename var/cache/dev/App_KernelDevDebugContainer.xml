@@ -25,6 +25,7 @@
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
       <parameter key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</parameter>
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle">SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -74,6 +75,10 @@
       <parameter key="MakerBundle" type="collection">
         <parameter key="path">/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/maker-bundle/src</parameter>
         <parameter key="namespace">Symfony\Bundle\MakerBundle</parameter>
+      </parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle" type="collection">
+        <parameter key="path">/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src</parameter>
+        <parameter key="namespace">SymfonyCasts\Bundle\VerifyEmail</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -371,6 +376,21 @@
         <argument type="service" id=".service_locator.jUv.zyj.App\Controller\HomeController"/>
       </call>
     </service>
+    <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Security\EmailVerifier"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\RegistrationController"/>
+      </call>
+    </service>
+    <service id="App\Controller\SecurityController" class="App\Controller\SecurityController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\SecurityController"/>
+      </call>
+    </service>
     <service id="App\Form\ArticleType" class="App\Form\ArticleType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -378,6 +398,9 @@
       <tag name="form.type"/>
     </service>
     <service id="App\Form\CategorieType" class="App\Form\CategorieType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Repository\ArticleRepository" class="App\Repository\ArticleRepository" autowire="true" autoconfigure="true">
@@ -399,6 +422,14 @@
     <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Security\EmailVerifier" class="App\Security\EmailVerifier" autowire="true" autoconfigure="true">
+      <argument type="service" id="symfonycasts.verify_email.helper"/>
+      <argument type="service" id="mailer.mailer"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="App\Security\UserAuthenticator" class="App\Security\UserAuthenticator" autowire="true" autoconfigure="true">
+      <argument type="service" id="router.default"/>
     </service>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory"/>
     <service id="argument_resolver.backed_enum_resolver" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\BackedEnumValueResolver">
@@ -427,7 +458,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.3co7MmK"/>
+      <argument type="service" id=".service_locator.2acFdX4"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1217,6 +1248,7 @@
         <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations</argument>
         <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations</argument>
         <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations</argument>
+        <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/twig-bridge/Resources/views/Email</argument>
@@ -1243,6 +1275,7 @@
         <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations</argument>
         <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations</argument>
         <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations</argument>
+        <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/twig-bridge/Resources/views/Email</argument>
@@ -1330,6 +1363,7 @@
         <argument>App\Form\ArticleType</argument>
         <argument>App\Form\Categorie1Type</argument>
         <argument>App\Form\CategorieType</argument>
+        <argument>App\Form\RegistrationFormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -2054,6 +2088,7 @@
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.ar.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.ar.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.ar.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ar.xlf</argument>
           </argument>
           <argument key="az" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.az.xlf</argument>
@@ -2079,11 +2114,13 @@
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.ca.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.ca.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.ca.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ca.xlf</argument>
           </argument>
           <argument key="cs" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.cs.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.cs.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.cs.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.cs.xlf</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.cy.xlf</argument>
@@ -2099,21 +2136,25 @@
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.de.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.de.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.de.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.de.xlf</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.el.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.el.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.el.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.el.xlf</argument>
           </argument>
           <argument key="en" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.en.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.en.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.en.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.en.xlf</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.es.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.es.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.es.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.es.xlf</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.et.xlf</argument>
@@ -2129,16 +2170,19 @@
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.fa.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.fa.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.fa.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fa.xlf</argument>
           </argument>
           <argument key="fi" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.fi.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.fi.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.fi.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fi.xlf</argument>
           </argument>
           <argument key="fr" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.fr.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.fr.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.fr.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fr.xlf</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.gl.xlf</argument>
@@ -2159,6 +2203,7 @@
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.hu.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.hu.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.hu.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.hu.xlf</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.hy.xlf</argument>
@@ -2169,16 +2214,19 @@
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.id.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.id.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.id.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.id.xlf</argument>
           </argument>
           <argument key="it" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.it.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.it.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.it.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.it.xlf</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.ja.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.ja.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.ja.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ja.xlf</argument>
           </argument>
           <argument key="lb" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.lb.xlf</argument>
@@ -2199,11 +2247,13 @@
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.mk.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.mk.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.mk.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.mk.xlf</argument>
           </argument>
           <argument key="mn" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.mn.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.mn.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.mn.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.mn.xlf</argument>
           </argument>
           <argument key="my" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.my.xlf</argument>
@@ -2219,6 +2269,7 @@
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.nl.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.nl.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.nl.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle+intl-icu.nl.xlf</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.nn.xlf</argument>
@@ -2234,11 +2285,13 @@
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.pl.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.pl.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.pl.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.pl.xlf</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.pt.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.pt.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.pt.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.pt.xlf</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.pt_BR.xlf</argument>
@@ -2249,16 +2302,19 @@
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.ro.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.ro.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.ro.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ro.xlf</argument>
           </argument>
           <argument key="ru" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.ru.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.ru.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.ru.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ru.xlf</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.sk.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.sk.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.sk.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.sk.xlf</argument>
           </argument>
           <argument key="sl" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.sl.xlf</argument>
@@ -2299,11 +2355,13 @@
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.tr.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.tr.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.tr.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.tr.xlf</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.uk.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.uk.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.uk.xlf</argument>
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.uk.xlf</argument>
           </argument>
           <argument key="ur" type="collection">
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.ur.xlf</argument>
@@ -2330,11 +2388,15 @@
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.zh_TW.xlf</argument>
             <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.zh_TW.xlf</argument>
           </argument>
+          <argument key="sr" type="collection">
+            <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.sr.xlf</argument>
+          </argument>
         </argument>
         <argument key="scanned_directories" type="collection">
           <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/validator/Resources/translations</argument>
           <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/form/Resources/translations</argument>
           <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/security-core/Resources/translations</argument>
+          <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
           <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/translations</argument>
           <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/symfony/framework-bundle/translations</argument>
           <argument>/Volumes/Bureau iMac 2023/Formation/Symfony/lineshop/vendor/doctrine/doctrine-bundle/translations</argument>
@@ -2354,6 +2416,7 @@
             <argument>vendor/symfony/validator/Resources/translations</argument>
             <argument>vendor/symfony/form/Resources/translations</argument>
             <argument>vendor/symfony/security-core/Resources/translations</argument>
+            <argument>vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
             <argument>translations</argument>
             <argument>vendor/symfony/framework-bundle/translations</argument>
             <argument>vendor/doctrine/doctrine-bundle/translations</argument>
@@ -3288,7 +3351,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.3co7MmK"/>
+      <argument type="service" id=".service_locator.2acFdX4"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -3772,7 +3835,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.Wmcbndb"/>
+      <argument type="service" id=".service_locator.ehm0Yu."/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -6959,21 +7022,47 @@
       <argument type="service" id="maker.file_manager"/>
       <argument type="service" id="maker.generator"/>
     </service>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CategorieController" class="App\Controller\CategorieController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CategorieController" class="App\Controller\CategorieController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\CategorieController" class="App\Controller\CategorieController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="symfonycasts.verify_email.token_generator" class="SymfonyCasts\Bundle\VerifyEmail\Generator\VerifyEmailTokenGenerator">
+      <argument>%env(APP_SECRET)%</argument>
+    </service>
+    <service id="symfonycasts.verify_email.query_utility" class="SymfonyCasts\Bundle\VerifyEmail\Util\VerifyEmailQueryUtility"/>
+    <service id="symfonycasts.verify_email.uri_signer_factory" class="SymfonyCasts\Bundle\VerifyEmail\Factory\UriSignerFactory">
+      <argument>%env(APP_SECRET)%</argument>
+      <argument>signature</argument>
+    </service>
+    <service id="symfonycasts.verify_email.uri_signer" class="Symfony\Component\HttpFoundation\UriSigner">
+      <factory service="symfonycasts.verify_email.uri_signer_factory" method="createUriSigner"/>
+    </service>
+    <service id="symfonycasts.verify_email.helper" class="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelper">
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="symfonycasts.verify_email.uri_signer"/>
+      <argument type="service" id="symfonycasts.verify_email.query_utility"/>
+      <argument type="service" id="symfonycasts.verify_email.token_generator"/>
+      <argument>3600</argument>
+    </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ArticleController" class="App\Controller\ArticleController" public="true" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ArticleController" class="App\Controller\ArticleController" public="true" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ArticleController" class="App\Controller\ArticleController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CategorieController" class="App\Controller\CategorieController" public="true" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CategorieController" class="App\Controller\CategorieController" public="true" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CategorieController" class="App\Controller\CategorieController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\HomeController" class="App\Controller\HomeController" public="true" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\HomeController" class="App\Controller\HomeController" public="true" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\HomeController" class="App\Controller\HomeController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" public="true" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" public="true" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ArticleType" class="App\Form\ArticleType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ArticleType" class="App\Form\ArticleType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Categorie1Type" class="App\Form\Categorie1Type" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\Categorie1Type" class="App\Form\Categorie1Type" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CategorieType" class="App\Form\CategorieType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\CategorieType" class="App\Form\CategorieType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ArticleRepository" class="App\Repository\ArticleRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ArticleRepository" class="App\Repository\ArticleRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CategorieRepository" class="App\Repository\CategorieRepository" autowire="true" abstract="true"/>
@@ -7451,7 +7540,26 @@
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.3co7MmK" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.V6D1oJY" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="userPasswordHasher" type="service_closure" id="security.user_password_hasher"/>
+      </argument>
+    </service>
+    <service id=".service_locator.1Z9fEX7" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="translator" type="service_closure" id="translator.data_collector"/>
+      </argument>
+    </service>
+    <service id=".service_locator.rSTd.nA" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
+      </argument>
+    </service>
+    <service id=".service_locator.2acFdX4" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ArticleController::delete" type="service_closure" id=".service_locator.zwPUnYq"/>
@@ -7459,12 +7567,17 @@
         <argument key="App\Controller\ArticleController::index" type="service_closure" id=".service_locator.b12wXHr"/>
         <argument key="App\Controller\ArticleController::new" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\ArticleController::show" type="service_closure" id=".service_locator.XqCCpgA"/>
+        <argument key="App\Controller\CategorieController::consoles" type="service_closure" id=".service_locator.b12wXHr"/>
         <argument key="App\Controller\CategorieController::delete" type="service_closure" id=".service_locator.aw9RHlF"/>
         <argument key="App\Controller\CategorieController::edit" type="service_closure" id=".service_locator.aw9RHlF"/>
         <argument key="App\Controller\CategorieController::index" type="service_closure" id=".service_locator.DFyL8OH"/>
+        <argument key="App\Controller\CategorieController::jeux" type="service_closure" id=".service_locator.b12wXHr"/>
         <argument key="App\Controller\CategorieController::new" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\CategorieController::show" type="service_closure" id=".service_locator.j7wOkYK"/>
         <argument key="App\Controller\HomeController::index" type="service_closure" id=".service_locator.b12wXHr"/>
+        <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.V6D1oJY"/>
+        <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.1Z9fEX7"/>
+        <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
@@ -7474,12 +7587,17 @@
         <argument key="App\Controller\ArticleController:index" type="service_closure" id=".service_locator.b12wXHr"/>
         <argument key="App\Controller\ArticleController:new" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\ArticleController:show" type="service_closure" id=".service_locator.XqCCpgA"/>
+        <argument key="App\Controller\CategorieController:consoles" type="service_closure" id=".service_locator.b12wXHr"/>
         <argument key="App\Controller\CategorieController:delete" type="service_closure" id=".service_locator.aw9RHlF"/>
         <argument key="App\Controller\CategorieController:edit" type="service_closure" id=".service_locator.aw9RHlF"/>
         <argument key="App\Controller\CategorieController:index" type="service_closure" id=".service_locator.DFyL8OH"/>
+        <argument key="App\Controller\CategorieController:jeux" type="service_closure" id=".service_locator.b12wXHr"/>
         <argument key="App\Controller\CategorieController:new" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\CategorieController:show" type="service_closure" id=".service_locator.j7wOkYK"/>
         <argument key="App\Controller\HomeController:index" type="service_closure" id=".service_locator.b12wXHr"/>
+        <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.V6D1oJY"/>
+        <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.1Z9fEX7"/>
+        <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
       </argument>
@@ -7641,12 +7759,13 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.Wmcbndb" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.ehm0Yu." class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ArticleType" type="service_closure" id="App\Form\ArticleType"/>
         <argument key="App\Form\Categorie1Type" type="service_closure" id="App\Form\Categorie1Type"/>
         <argument key="App\Form\CategorieType" type="service_closure" id="App\Form\CategorieType"/>
+        <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ColorType" type="service_closure" id="form.type.color"/>
@@ -8109,6 +8228,18 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.jUv.zyj" method="withContext"/>
     </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\RegistrationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\RegistrationController"/>
+      <argument>App\Controller\RegistrationController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
+    </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\SecurityController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\SecurityController"/>
+      <argument>App\Controller\SecurityController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
+    </service>
     <service id=".service_locator.fuYM_Z." class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8285,6 +8416,8 @@
           <argument>App\Controller\ArticleController</argument>
           <argument>App\Controller\CategorieController</argument>
           <argument>App\Controller\HomeController</argument>
+          <argument>App\Controller\RegistrationController</argument>
+          <argument>App\Controller\SecurityController</argument>
           <argument>Doctrine\Bundle\DoctrineBundle\Controller\ProfilerController</argument>
         </argument>
       </call>
@@ -9637,9 +9770,10 @@
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
+    <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.bJ.4HC5" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.3co7MmK"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.2acFdX4"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9689,6 +9823,9 @@
     <service id=".service_locator.J7lSc4B" alias=".service_locator.DFyL8OH"/>
     <service id=".service_locator.2whhcc6" alias=".service_locator.j7wOkYK"/>
     <service id=".service_locator.n6yy7k1" alias=".service_locator.aw9RHlF"/>
+    <service id=".service_locator.qnm_CJ1" alias=".service_locator.V6D1oJY"/>
+    <service id=".service_locator.5cKt1SW" alias=".service_locator.1Z9fEX7"/>
+    <service id=".service_locator.7NIAq8D" alias=".service_locator.rSTd.nA"/>
     <service id=".service_locator.Q1z.f9O" alias=".service_locator.jUv.zyj"/>
   </services>
 </container>
