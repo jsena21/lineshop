@@ -17,7 +17,10 @@
                     </div>
                 {% endif %}
 
-                <h1 class="h3 mb-3 font-weight-normal text-center">Login or <a href="{{ path('register')}}">register here</a></h1>
+                <h1 class="h3 mb-3 font-weight-normal text-center">Login</h1>
+                <div class="text-center mb-3">
+                    <a href="{{ path('register') }}">or register here</a>
+                </div>
                 <div class="form-group">
                     <label for="inputEmail">Email</label>
                     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>

@@ -10,15 +10,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Form\ArticleFilterType;
 
 #[Route('/article')]
 class ArticleController extends AbstractController
 {
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, Request $request): Response
     {
+        $form = $this->createForm(ArticleFilterType::class);
+        $form->handleRequest($request);
+
+        $articles = $articleRepository->findAll();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $category = $form->get('category')->getData();
+            if ($category) {
+                $articles = $articleRepository->findByCategory($category->getName());
+            }
+        }
+
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $articles,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -71,7 +85,7 @@ class ArticleController extends AbstractController
     #[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->getPayload()->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($article);
             $entityManager->flush();
         }

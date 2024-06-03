@@ -16,6 +16,21 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    /**
+     * @param string $categoryName
+     * @return Article[]
+     */
+    public function findByCategoryName(string $categoryName): array
+    {
+        return $this->createQueryBuilder('a')
+            ->innerJoin('a.categorie', 'c')
+            ->where('c.libelle = :categoryName')
+            ->setParameter('categoryName', $categoryName)
+            ->orderBy('a.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Article[] Returns an array of Article objects
     //     */
@@ -40,4 +55,5 @@ class ArticleRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
 }

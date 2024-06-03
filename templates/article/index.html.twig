@@ -21,7 +21,7 @@
             <tr>
                 <td>{{ article.id }}</td>
                 <td>{{ article.nom }}</td>
-                <td>{{ article.image }}</td>
+                <td><img src="{{ asset('image/' ~ article.image)}}" alt="{{ article.description }}"></td>
                 <td>{{ article.prix }}</td>
                 <td>{{ article.description }}</td>
                 <td>

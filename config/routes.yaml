@@ -11,3 +11,8 @@ home:
 register:
     path: /register
     controller: App\Controller\SecurityController::register
+
+filter_articles:
+    path: /articles/filter
+    controller: App\Controller\ArticleController::filter
+    methods: [GET, POST]
