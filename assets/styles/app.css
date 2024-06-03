@@ -1,3 +1,50 @@
+html,
 body {
-    background-color: skyblue;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+
+.navbar-brand small {
+    display: block;
+    font-size: 0.7rem;
+    line-height: 1.2;
+}
+
+.cart-info {
+    display: flex;
+    align-items: center;
+}
+
+.cart-info>div {
+    margin-left: 1rem;
+}
+
+nav a,
+footer a {
+    text-decoration: none;
+
+}
+
+#item-count,
+#total-amount {
+    color: white;
+    text-align: center;
+}
+
+body {
+    min-height: 100vh !important;
+}
+
+img {
+
+    object-fit: contain;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
