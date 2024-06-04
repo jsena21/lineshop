@@ -38,10 +38,6 @@ footer a {
     text-align: center;
 }
 
-body {
-    min-height: 100vh !important;
-}
-
 img {
 
     object-fit: contain;
