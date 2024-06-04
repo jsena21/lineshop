@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
@@ -16,30 +15,30 @@ class Article
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
-    private ?string $prix = null;
+    #[ORM\Column(nullable: true)]
+    private ?float $prix = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
-
-    #[ORM\ManyToOne(inversedBy: 'articles')]
-    private ?Categorie $categorie = null;
 
     /**
      * @var Collection<int, LigneCommande>
      */
     #[ORM\OneToMany(targetEntity: LigneCommande::class, mappedBy: 'article')]
-    private Collection $ligneCommandes;
+    private Collection $lignecommande;
+
+    #[ORM\ManyToOne(inversedBy: 'article')]
+    private ?Categorie $categorie = null;
 
     public function __construct()
     {
-        $this->ligneCommandes = new ArrayCollection();
+        $this->lignecommande = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,31 +51,31 @@ class Article
         return $this->nom;
     }
 
-    public function setNom(string $nom): static
+    public function setNom(?string $nom): static
     {
         $this->nom = $nom;
 
         return $this;
     }
 
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage($image): static
+    public function setImage(?string $image): static
     {
         $this->image = $image;
 
         return $this;
     }
 
-    public function getPrix(): ?string
+    public function getPrix(): ?float
     {
         return $this->prix;
     }
 
-    public function setPrix(string $prix): static
+    public function setPrix(?float $prix): static
     {
         $this->prix = $prix;
 
@@ -88,9 +87,39 @@ class Article
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LigneCommande>
+     */
+    public function getLignecommande(): Collection
+    {
+        return $this->lignecommande;
+    }
+
+    public function addLignecommande(LigneCommande $lignecommande): static
+    {
+        if (!$this->lignecommande->contains($lignecommande)) {
+            $this->lignecommande->add($lignecommande);
+            $lignecommande->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLignecommande(LigneCommande $lignecommande): static
+    {
+        if ($this->lignecommande->removeElement($lignecommande)) {
+            // set the owning side to null (unless already changed)
+            if ($lignecommande->getArticle() === $this) {
+                $lignecommande->setArticle(null);
+            }
+        }
 
         return $this;
     }
@@ -103,36 +132,6 @@ class Article
     public function setCategorie(?Categorie $categorie): static
     {
         $this->categorie = $categorie;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, LigneCommande>
-     */
-    public function getLigneCommandes(): Collection
-    {
-        return $this->ligneCommandes;
-    }
-
-    public function addLigneCommande(LigneCommande $ligneCommande): static
-    {
-        if (!$this->ligneCommandes->contains($ligneCommande)) {
-            $this->ligneCommandes->add($ligneCommande);
-            $ligneCommande->setArticle($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLigneCommande(LigneCommande $ligneCommande): static
-    {
-        if ($this->ligneCommandes->removeElement($ligneCommande)) {
-            // set the owning side to null (unless already changed)
-            if ($ligneCommande->getArticle() === $this) {
-                $ligneCommande->setArticle(null);
-            }
-        }
 
         return $this;
     }
