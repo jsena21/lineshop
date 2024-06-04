@@ -27,7 +27,6 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
 
         $this->blocks = [
             'title' => [$this, 'block_title'],
-            'stylesheets' => [$this, 'block_stylesheets'],
             'body' => [$this, 'block_body'],
         ];
     }
@@ -78,35 +77,7 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
         return; yield '';
     }
 
-    // line 6
-    public function block_stylesheets($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
-
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
-
-        // line 7
-        yield "\t";
-        yield from $this->yieldParentBlock("stylesheets", $context, $blocks);
-        yield "
-\t<link rel=\"stylesheet\" href=\"";
-        // line 8
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("styles/home.css"), "html", null, true);
-        yield "\">
-";
-        
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
-
-        
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
-
-        return; yield '';
-    }
-
-    // line 11
+    // line 7
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -116,35 +87,35 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 12
+        // line 8
         yield "\t<div class=\"container mt-4\">
 \t\t<div class=\"row\">
 \t\t\t";
-        // line 14
+        // line 10
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 14, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 10, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
-            // line 15
+            // line 11
             yield "\t\t\t\t<div class=\"col-md-3 mb-4\">
 \t\t\t\t\t<div class=\"card border border-success shadow-lg\">
 \t\t\t\t\t\t<img src=\"";
-            // line 17
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("images/" . CoreExtension::getAttribute($this->env, $this->source, $context["article"], "image", [], "any", false, false, false, 17))), "html", null, true);
+            // line 13
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("images/" . CoreExtension::getAttribute($this->env, $this->source, $context["article"], "image", [], "any", false, false, false, 13))), "html", null, true);
             yield "\" width=\"auto\" height=\"200px\" alt=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 17), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 13), "html", null, true);
             yield "\">
 \t\t\t\t\t\t<div class=\"card-body bg-success-subtle border-top border-success\">
 \t\t\t\t\t\t\t<div class=\"row justify-content-center align-items-center\">
 \t\t\t\t\t\t\t\t<div class=\"col-8 border-right border-success\">
 \t\t\t\t\t\t\t\t\t<div class=\"fs-6 text card-title\">";
-            // line 21
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 21), "html", null, true);
+            // line 17
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 17), "html", null, true);
             yield "</div>
 \t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t<div class=\"col-4 text-right\">
 \t\t\t\t\t\t\t\t\t<div class=\"fs-4 text card-title text-success\">";
-            // line 24
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 24), "html", null, true);
+            // line 20
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 20), "html", null, true);
             yield "
 \t\t\t\t\t\t\t\t\t\t€</div>
 \t\t\t\t\t\t\t\t</div>
@@ -181,7 +152,7 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['article'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 56
+        // line 52
         yield "\t\t</div>
 \t</div>
 ";
@@ -215,7 +186,7 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  185 => 56,  147 => 24,  141 => 21,  132 => 17,  128 => 15,  124 => 14,  120 => 12,  110 => 11,  97 => 8,  92 => 7,  82 => 6,  61 => 3,  38 => 1,);
+        return array (  156 => 52,  118 => 20,  112 => 17,  103 => 13,  99 => 11,  95 => 10,  91 => 8,  81 => 7,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -225,10 +196,6 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
 {% block title %}LineshoP Welcome !
 {% endblock %}
 
-{% block stylesheets %}
-\t{{ parent() }}
-\t<link rel=\"stylesheet\" href=\"{{ asset('styles/home.css') }}\">
-{% endblock %}
 
 {% block body %}
 \t<div class=\"container mt-4\">

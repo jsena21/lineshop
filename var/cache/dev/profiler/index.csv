@@ -832,3 +832,10 @@ e77af9,127.0.0.1,POST,https://127.0.0.1:8000/register,1717490274,,302,request
 f274b6,127.0.0.1,GET,https://127.0.0.1:8000/login,1717490274,,200,request
 db151e,127.0.0.1,POST,https://127.0.0.1:8000/login,1717490280,,302,request
 da35fa,127.0.0.1,GET,https://127.0.0.1:8000/,1717490280,,200,request
+252f99,127.0.0.1,GET,https://127.0.0.1:8000/categorie/see/consoles,1717490502,,200,request
+e65b65,127.0.0.1,GET,https://127.0.0.1:8000/styles/home.css,1717490505,330208,404,request
+330208,127.0.0.1,GET,https://127.0.0.1:8000/styles/home.css,1717490505,,404,request
+cb966b,127.0.0.1,GET,https://127.0.0.1:8000/categorie/see/consoles,1717490546,,200,request
+a5b473,127.0.0.1,GET,https://127.0.0.1:8000/,1717490551,,200,request
+8b0468,127.0.0.1,GET,https://127.0.0.1:8000/logout,1717490554,,302,request
+0577c6,127.0.0.1,GET,https://127.0.0.1:8000/,1717490554,,200,request
