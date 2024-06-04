@@ -40,9 +40,19 @@
 			<div class="container-fluid py-3 mt-0 bg-secondary text-center">
 				<div class="row">
 					<div class="col">
-						<span class="text-white me-3">Welcome! You can
-							<a class="text-dark fs-6 fw-bold text-decoration-none" href="/login">Log in</a>
-						</span>
+												{% if app.user %}
+							<div class="mb-3">
+								Welcome
+								{{ app.user.email }}
+								! You can
+								<a href="{{ path('app_logout') }}">Logout</a>.
+							</div>
+						{% else %}
+							<div class="mb-3">
+								User not connected ! You can
+								<a class="fw-bold text-dark text-decoration-none" href="{{ path('app_login') }}">Login</a>.
+							</div>
+						{% endif %}
 					</div>
 				</div>
 			</div>
