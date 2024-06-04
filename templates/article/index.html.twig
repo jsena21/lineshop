@@ -12,7 +12,7 @@
 	{% else %}
 		<p class="text">
 			Welcome, you can
-			<a class="logout" href="{{path('app_login')}}">Login</a>
+			<a class="logout" href="{{path('app_login')}}">login</a>
 		</p>
 	{% endif %}
 	<ul>
@@ -28,72 +28,48 @@
 	</ul>
 	<div class="container mt-5">
 		<div class="row">
-			<div class="col-md-4">
-				<div class="card mb-4">
-					<img src="https://via.placeholder.com/150" class="card-img-top" alt="Console PS4">
-					<div class="card-body">
-						<h5 class="card-title">Console PS4</h5>
-						<p class="card-text">299 €</p>
-						<i class="bi bi-gift"></i>
-						<a href="#" class="btn btn-primary">+</a>
+			{% for article in articles %}
+				<div class="col-md-3 mb-4">
+					<div class="card border border-success shadow-lg">
+						<img src="{{ asset('images/' ~ article.image) }}" width="auto" height="200px" alt="{{ article.description }}">
+						<div class="card-body bg-success-subtle border-top border-success">
+							<div class="row justify-content-center align-items-center">
+								<div class="col-8 border-right border-success">
+									<div class="fs-6 text card-title">{{ article.nom }}</div>
+								</div>
+								<div class="col-4 text-right">
+									<div class="fs-4 text card-title text-success">{{ article.prix }}
+										€</div>
+								</div>
+							</div>
+							<div class="row mt-2 border-top border-success pt-2">
+								<div class="col-12 text-center">
+									<div class="row justify-content-center align-items-center">
+										<div class="col-3">
+											<i class="fas fa-gift gift-icon fa-lg"></i>
+										</div>
+										<div class="col-6">
+											<div class="rating">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+
+										</div>
+										<div class="col-3 text-right">
+											<button class="btn btn-success btn-block">
+												<i class="fa-solid fa-cart-plus"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="card mb-4">
-					<img src="https://via.placeholder.com/150" class="card-img-top" alt="Console Wii U">
-					<div class="card-body">
-						<h5 class="card-title">Console Wii U</h5>
-						<p class="card-text">489 €</p>
-						<i class="bi bi-gift"></i>
-						<a href="#" class="btn btn-primary">+</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="card mb-4">
-					<img src="https://via.placeholder.com/150" class="card-img-top" alt="Console Xbox 360">
-					<div class="card-body">
-						<h5 class="card-title">Console Xbox 360</h5>
-						<p class="card-text">309 €</p>
-						<i class="bi bi-gift"></i>
-						<a href="#" class="btn btn-primary">+</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="card mb-4">
-					<img src="https://via.placeholder.com/150" class="card-img-top" alt="Assassin's Creed PS4">
-					<div class="card-body">
-						<h5 class="card-title">Assassin's Creed PS4</h5>
-						<p class="card-text">66 €</p>
-						<i class="bi bi-gift"></i>
-						<a href="#" class="btn btn-primary">+</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="card mb-4">
-					<img src="https://via.placeholder.com/150" class="card-img-top" alt="Dragon Ball Fighter">
-					<div class="card-body">
-						<h5 class="card-title">Dragon Ball Fighter</h5>
-						<p class="card-text">55 €</p>
-						<i class="bi bi-gift"></i>
-						<a href="#" class="btn btn-primary">+</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="card mb-4">
-					<img src="https://via.placeholder.com/150" class="card-img-top" alt="Zombi U Wii U">
-					<div class="card-body">
-						<h5 class="card-title">Zombi U Wii U</h5>
-						<p class="card-text">19 €</p>
-						<i class="bi bi-gift"></i>
-						<a href="#" class="btn btn-primary">+</a>
-					</div>
-				</div>
-			</div>
+			{% endfor %}
 		</div>
 	</div>
 

@@ -60,14 +60,14 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 \t\t";
         // line 10
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 15
+        // line 14
         yield "\t</head>
 \t<body>
 \t\t<header>
 \t\t\t<nav class=\"navbar navbar-expand-lg navbar-light\">
 \t\t\t\t<div class=\"container-fluid\">
 \t\t\t\t\t<a class=\"navbar-brand\" href=\"";
-        // line 20
+        // line 19
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_article_index");
         yield "\">
 \t\t\t\t\t\t<p>
@@ -78,7 +78,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 \t\t\t\t\t<div>
 \t\t\t\t\t\t<div class=\"d-flex cart-info \">
 \t\t\t\t\t\t\t<a href=\"";
-        // line 28
+        // line 27
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier");
         yield "\">
 \t\t\t\t\t\t\t\t<i class=\"bi bi-cart4\"></i>
@@ -89,7 +89,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div class=\"total\">
 \t\t\t\t\t\t\t\t<p>Total</p>
-\t\t\t\t\t\t\t\t<div id=\"total-amount\">234€</div>
+\t\t\t\t\t\t\t\t<div id=\"total-amount\">0€</div>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
@@ -99,9 +99,9 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 
 \t\t<main>
 \t\t\t";
-        // line 46
+        // line 45
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 47
+        // line 46
         yield "\t\t</main>
 
 \t\t<footer class=\"bg-black text-center text-white  py-4 fw-bold mt-2ps-2 \">
@@ -122,9 +122,9 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 \t\t</footer>
 
 \t\t";
-        // line 66
+        // line 65
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 75
+        // line 74
         yield "
 
 \t</body>
@@ -173,10 +173,6 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         // line 11
         yield "\t\t\t<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\" crossorigin=\"anonymous\">
 \t\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\">
-\t\t\t<link rel=\"stylesheet\" href=\"";
-        // line 13
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("styles/base.css"), "html", null, true);
-        yield "\">
 \t\t";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -187,7 +183,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         return; yield '';
     }
 
-    // line 46
+    // line 45
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -206,7 +202,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         return; yield '';
     }
 
-    // line 66
+    // line 65
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -216,10 +212,10 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 67
+        // line 66
         yield "\t\t\t";
         yield from $this->unwrap()->yieldBlock('importmap', $context, $blocks);
-        // line 70
+        // line 69
         yield "\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js\"></script>
 \t\t\t<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js\"></script>
 \t\t\t<script defer src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>
@@ -234,7 +230,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         return; yield '';
     }
 
-    // line 67
+    // line 66
     public function block_importmap($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -244,7 +240,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "importmap"));
 
-        // line 68
+        // line 67
         yield "\t\t\t\t";
         yield $this->env->getRuntime('Symfony\Bridge\Twig\Extension\ImportMapRuntime')->importmap("app");
         yield "
@@ -279,7 +275,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  248 => 68,  238 => 67,  223 => 70,  220 => 67,  210 => 66,  191 => 46,  178 => 13,  174 => 11,  164 => 10,  143 => 6,  128 => 75,  126 => 66,  105 => 47,  103 => 46,  82 => 28,  71 => 20,  64 => 15,  62 => 10,  58 => 8,  56 => 6,  49 => 1,);
+        return array (  244 => 67,  234 => 66,  219 => 69,  216 => 66,  206 => 65,  187 => 45,  174 => 11,  164 => 10,  143 => 6,  128 => 74,  126 => 65,  105 => 46,  103 => 45,  82 => 27,  71 => 19,  64 => 14,  62 => 10,  58 => 8,  56 => 6,  49 => 1,);
     }
 
     public function getSourceContext()
@@ -296,7 +292,6 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 \t\t{% block stylesheets %}
 \t\t\t<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\" crossorigin=\"anonymous\">
 \t\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\">
-\t\t\t<link rel=\"stylesheet\" href=\"{{ asset('styles/base.css') }}\">
 \t\t{% endblock %}
 \t</head>
 \t<body>
@@ -320,7 +315,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div class=\"total\">
 \t\t\t\t\t\t\t\t<p>Total</p>
-\t\t\t\t\t\t\t\t<div id=\"total-amount\">234€</div>
+\t\t\t\t\t\t\t\t<div id=\"total-amount\">0€</div>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>

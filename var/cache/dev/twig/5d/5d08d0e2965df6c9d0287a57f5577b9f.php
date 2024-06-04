@@ -106,7 +106,7 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
 \t\t\t<a class=\"logout\" href=\"";
             // line 15
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            yield "\">Login</a>
+            yield "\">login</a>
 \t\t</p>
 \t";
         }
@@ -124,73 +124,70 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
 \t</ul>
 \t<div class=\"container mt-5\">
 \t\t<div class=\"row\">
-\t\t\t<div class=\"col-md-4\">
-\t\t\t\t<div class=\"card mb-4\">
-\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Console PS4\">
-\t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h5 class=\"card-title\">Console PS4</h5>
-\t\t\t\t\t\t<p class=\"card-text\">299 €</p>
-\t\t\t\t\t\t<i class=\"bi bi-gift\"></i>
-\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">+</a>
+\t\t\t";
+        // line 31
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 31, $this->source); })()));
+        foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
+            // line 32
+            yield "\t\t\t\t<div class=\"col-md-3 mb-4\">
+\t\t\t\t\t<div class=\"card border border-success shadow-lg\">
+\t\t\t\t\t\t<img src=\"";
+            // line 34
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("images/" . CoreExtension::getAttribute($this->env, $this->source, $context["article"], "image", [], "any", false, false, false, 34))), "html", null, true);
+            yield "\" width=\"auto\" height=\"200px\" alt=\"";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 34), "html", null, true);
+            yield "\">
+\t\t\t\t\t\t<div class=\"card-body bg-success-subtle border-top border-success\">
+\t\t\t\t\t\t\t<div class=\"row justify-content-center align-items-center\">
+\t\t\t\t\t\t\t\t<div class=\"col-8 border-right border-success\">
+\t\t\t\t\t\t\t\t\t<div class=\"fs-6 text card-title\">";
+            // line 38
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 38), "html", null, true);
+            yield "</div>
+\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t<div class=\"col-4 text-right\">
+\t\t\t\t\t\t\t\t\t<div class=\"fs-4 text card-title text-success\">";
+            // line 41
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 41), "html", null, true);
+            yield "
+\t\t\t\t\t\t\t\t\t\t€</div>
+\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t<div class=\"row mt-2 border-top border-success pt-2\">
+\t\t\t\t\t\t\t\t<div class=\"col-12 text-center\">
+\t\t\t\t\t\t\t\t\t<div class=\"row justify-content-center align-items-center\">
+\t\t\t\t\t\t\t\t\t\t<div class=\"col-3\">
+\t\t\t\t\t\t\t\t\t\t\t<i class=\"fas fa-gift gift-icon fa-lg\"></i>
+\t\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t\t\t<div class=\"col-6\">
+\t\t\t\t\t\t\t\t\t\t\t<div class=\"rating\">
+\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-star\"></i>
+\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-star\"></i>
+\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-star\"></i>
+\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-star\"></i>
+\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa-regular fa-star\"></i>
+\t\t\t\t\t\t\t\t\t\t\t</div>
+
+\t\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t\t\t<div class=\"col-3 text-right\">
+\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn btn-success btn-block\">
+\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa-solid fa-cart-plus\"></i>
+\t\t\t\t\t\t\t\t\t\t\t</button>
+\t\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
 \t\t\t\t</div>
-\t\t\t</div>
-\t\t\t<div class=\"col-md-4\">
-\t\t\t\t<div class=\"card mb-4\">
-\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Console Wii U\">
-\t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h5 class=\"card-title\">Console Wii U</h5>
-\t\t\t\t\t\t<p class=\"card-text\">489 €</p>
-\t\t\t\t\t\t<i class=\"bi bi-gift\"></i>
-\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">+</a>
-\t\t\t\t\t</div>
-\t\t\t\t</div>
-\t\t\t</div>
-\t\t\t<div class=\"col-md-4\">
-\t\t\t\t<div class=\"card mb-4\">
-\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Console Xbox 360\">
-\t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h5 class=\"card-title\">Console Xbox 360</h5>
-\t\t\t\t\t\t<p class=\"card-text\">309 €</p>
-\t\t\t\t\t\t<i class=\"bi bi-gift\"></i>
-\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">+</a>
-\t\t\t\t\t</div>
-\t\t\t\t</div>
-\t\t\t</div>
-\t\t\t<div class=\"col-md-4\">
-\t\t\t\t<div class=\"card mb-4\">
-\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Assassin's Creed PS4\">
-\t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h5 class=\"card-title\">Assassin's Creed PS4</h5>
-\t\t\t\t\t\t<p class=\"card-text\">66 €</p>
-\t\t\t\t\t\t<i class=\"bi bi-gift\"></i>
-\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">+</a>
-\t\t\t\t\t</div>
-\t\t\t\t</div>
-\t\t\t</div>
-\t\t\t<div class=\"col-md-4\">
-\t\t\t\t<div class=\"card mb-4\">
-\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Dragon Ball Fighter\">
-\t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h5 class=\"card-title\">Dragon Ball Fighter</h5>
-\t\t\t\t\t\t<p class=\"card-text\">55 €</p>
-\t\t\t\t\t\t<i class=\"bi bi-gift\"></i>
-\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">+</a>
-\t\t\t\t\t</div>
-\t\t\t\t</div>
-\t\t\t</div>
-\t\t\t<div class=\"col-md-4\">
-\t\t\t\t<div class=\"card mb-4\">
-\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Zombi U Wii U\">
-\t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h5 class=\"card-title\">Zombi U Wii U</h5>
-\t\t\t\t\t\t<p class=\"card-text\">19 €</p>
-\t\t\t\t\t\t<i class=\"bi bi-gift\"></i>
-\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">+</a>
-\t\t\t\t\t</div>
-\t\t\t\t</div>
-\t\t\t</div>
-\t\t</div>
+\t\t\t";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['article'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 73
+        yield "\t\t</div>
 \t</div>
 
 \t<script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script>
@@ -227,7 +224,7 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  114 => 18,  108 => 15,  104 => 13,  98 => 10,  94 => 8,  91 => 7,  81 => 6,  60 => 3,  37 => 1,);
+        return array (  190 => 73,  152 => 41,  146 => 38,  137 => 34,  133 => 32,  129 => 31,  114 => 18,  108 => 15,  104 => 13,  98 => 10,  94 => 8,  91 => 7,  81 => 6,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -246,7 +243,7 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
 \t{% else %}
 \t\t<p class=\"text\">
 \t\t\tWelcome, you can
-\t\t\t<a class=\"logout\" href=\"{{path('app_login')}}\">Login</a>
+\t\t\t<a class=\"logout\" href=\"{{path('app_login')}}\">login</a>
 \t\t</p>
 \t{% endif %}
 \t<ul>
@@ -262,72 +259,48 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
 \t</ul>
 \t<div class=\"container mt-5\">
 \t\t<div class=\"row\">
-\t\t\t<div class=\"col-md-4\">
-\t\t\t\t<div class=\"card mb-4\">
-\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Console PS4\">
-\t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h5 class=\"card-title\">Console PS4</h5>
-\t\t\t\t\t\t<p class=\"card-text\">299 €</p>
-\t\t\t\t\t\t<i class=\"bi bi-gift\"></i>
-\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">+</a>
+\t\t\t{% for article in articles %}
+\t\t\t\t<div class=\"col-md-3 mb-4\">
+\t\t\t\t\t<div class=\"card border border-success shadow-lg\">
+\t\t\t\t\t\t<img src=\"{{ asset('images/' ~ article.image) }}\" width=\"auto\" height=\"200px\" alt=\"{{ article.description }}\">
+\t\t\t\t\t\t<div class=\"card-body bg-success-subtle border-top border-success\">
+\t\t\t\t\t\t\t<div class=\"row justify-content-center align-items-center\">
+\t\t\t\t\t\t\t\t<div class=\"col-8 border-right border-success\">
+\t\t\t\t\t\t\t\t\t<div class=\"fs-6 text card-title\">{{ article.nom }}</div>
+\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t<div class=\"col-4 text-right\">
+\t\t\t\t\t\t\t\t\t<div class=\"fs-4 text card-title text-success\">{{ article.prix }}
+\t\t\t\t\t\t\t\t\t\t€</div>
+\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t<div class=\"row mt-2 border-top border-success pt-2\">
+\t\t\t\t\t\t\t\t<div class=\"col-12 text-center\">
+\t\t\t\t\t\t\t\t\t<div class=\"row justify-content-center align-items-center\">
+\t\t\t\t\t\t\t\t\t\t<div class=\"col-3\">
+\t\t\t\t\t\t\t\t\t\t\t<i class=\"fas fa-gift gift-icon fa-lg\"></i>
+\t\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t\t\t<div class=\"col-6\">
+\t\t\t\t\t\t\t\t\t\t\t<div class=\"rating\">
+\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-star\"></i>
+\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-star\"></i>
+\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-star\"></i>
+\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-star\"></i>
+\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa-regular fa-star\"></i>
+\t\t\t\t\t\t\t\t\t\t\t</div>
+
+\t\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t\t\t<div class=\"col-3 text-right\">
+\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn btn-success btn-block\">
+\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa-solid fa-cart-plus\"></i>
+\t\t\t\t\t\t\t\t\t\t\t</button>
+\t\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
 \t\t\t\t</div>
-\t\t\t</div>
-\t\t\t<div class=\"col-md-4\">
-\t\t\t\t<div class=\"card mb-4\">
-\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Console Wii U\">
-\t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h5 class=\"card-title\">Console Wii U</h5>
-\t\t\t\t\t\t<p class=\"card-text\">489 €</p>
-\t\t\t\t\t\t<i class=\"bi bi-gift\"></i>
-\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">+</a>
-\t\t\t\t\t</div>
-\t\t\t\t</div>
-\t\t\t</div>
-\t\t\t<div class=\"col-md-4\">
-\t\t\t\t<div class=\"card mb-4\">
-\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Console Xbox 360\">
-\t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h5 class=\"card-title\">Console Xbox 360</h5>
-\t\t\t\t\t\t<p class=\"card-text\">309 €</p>
-\t\t\t\t\t\t<i class=\"bi bi-gift\"></i>
-\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">+</a>
-\t\t\t\t\t</div>
-\t\t\t\t</div>
-\t\t\t</div>
-\t\t\t<div class=\"col-md-4\">
-\t\t\t\t<div class=\"card mb-4\">
-\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Assassin's Creed PS4\">
-\t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h5 class=\"card-title\">Assassin's Creed PS4</h5>
-\t\t\t\t\t\t<p class=\"card-text\">66 €</p>
-\t\t\t\t\t\t<i class=\"bi bi-gift\"></i>
-\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">+</a>
-\t\t\t\t\t</div>
-\t\t\t\t</div>
-\t\t\t</div>
-\t\t\t<div class=\"col-md-4\">
-\t\t\t\t<div class=\"card mb-4\">
-\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Dragon Ball Fighter\">
-\t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h5 class=\"card-title\">Dragon Ball Fighter</h5>
-\t\t\t\t\t\t<p class=\"card-text\">55 €</p>
-\t\t\t\t\t\t<i class=\"bi bi-gift\"></i>
-\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">+</a>
-\t\t\t\t\t</div>
-\t\t\t\t</div>
-\t\t\t</div>
-\t\t\t<div class=\"col-md-4\">
-\t\t\t\t<div class=\"card mb-4\">
-\t\t\t\t\t<img src=\"https://via.placeholder.com/150\" class=\"card-img-top\" alt=\"Zombi U Wii U\">
-\t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h5 class=\"card-title\">Zombi U Wii U</h5>
-\t\t\t\t\t\t<p class=\"card-text\">19 €</p>
-\t\t\t\t\t\t<i class=\"bi bi-gift\"></i>
-\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-primary\">+</a>
-\t\t\t\t\t</div>
-\t\t\t\t</div>
-\t\t\t</div>
+\t\t\t{% endfor %}
 \t\t</div>
 \t</div>
 
