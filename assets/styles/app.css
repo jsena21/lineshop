@@ -10,6 +10,7 @@ main {
     flex: 1;
 }
 
+
 .navbar-brand small {
     display: block;
     font-size: 0.7rem;
@@ -37,7 +38,13 @@ footer a {
     text-align: center;
 }
 
-/* img {
+body {
+    min-height: 100vh !important;
+}
+
+img {
 
     object-fit: contain;
-} */
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
