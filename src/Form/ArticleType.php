@@ -3,11 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Article;
-<<<<<<< HEAD
-=======
 use App\Entity\Categorie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
->>>>>>> Farid
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,14 +18,10 @@ class ArticleType extends AbstractType
             ->add('image')
             ->add('prix')
             ->add('description')
-<<<<<<< HEAD
-        ;
-=======
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' => 'libelle',
             ]);
->>>>>>> Farid
     }
 
     public function configureOptions(OptionsResolver $resolver): void
