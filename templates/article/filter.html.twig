@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Filtrer les articles{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Filtrer les articles</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.category) }}
+    <button type="submit" class="btn btn-primary">Filtrer</button>
+    {{ form_end(form) }}
+
+    <h2>Articles</h2>
+    <div class="articles">
+        {% if articles is not empty %}
+            {% for article in articles %}
+                <div class="article">
+                    <h3>{{ article.nom }}</h3>
+                    <p>{{ article.description }}</p>
+                    <!-- Ajoutez d'autres champs d'article si nécessaire -->
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Aucun article trouvé pour la catégorie sélectionnée.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -25,6 +25,7 @@
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
       <parameter key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</parameter>
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle">SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -74,6 +75,10 @@
       <parameter key="MakerBundle" type="collection">
         <parameter key="path">/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/maker-bundle/src</parameter>
         <parameter key="namespace">Symfony\Bundle\MakerBundle</parameter>
+      </parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle" type="collection">
+        <parameter key="path">/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src</parameter>
+        <parameter key="namespace">SymfonyCasts\Bundle\VerifyEmail</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -347,6 +352,85 @@
       <tag name="controller.service_arguments"/>
       <tag name="routing.route_loader"/>
     </service>
+    <service id="App\Entity" class="App\Entity" abstract="true">
+      <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
+    </service>
+    <service id="App\Controller\ArticleController" class="App\Controller\ArticleController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\ArticleController"/>
+      </call>
+    </service>
+    <service id="App\Controller\CategorieController" class="App\Controller\CategorieController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\CategorieController"/>
+      </call>
+    </service>
+    <service id="App\Controller\PanierController" class="App\Controller\PanierController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\PanierController"/>
+      </call>
+    </service>
+    <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Security\EmailVerifier"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\RegistrationController"/>
+      </call>
+    </service>
+    <service id="App\Controller\SecurityController" class="App\Controller\SecurityController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\SecurityController"/>
+      </call>
+    </service>
+    <service id="App\Form\ArticleFilterType" class="App\Form\ArticleFilterType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\ArticleType" class="App\Form\ArticleType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\CategorieType" class="App\Form\CategorieType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Repository\ArticleRepository" class="App\Repository\ArticleRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\CategorieRepository" class="App\Repository\CategorieRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\CommandeRepository" class="App\Repository\CommandeRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\LigneCommandeRepository" class="App\Repository\LigneCommandeRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Security\EmailVerifier" class="App\Security\EmailVerifier" autowire="true" autoconfigure="true">
+      <argument type="service" id="symfonycasts.verify_email.helper"/>
+      <argument type="service" id="mailer.mailer"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="App\Security\UserAuthenticator" class="App\Security\UserAuthenticator" autowire="true" autoconfigure="true">
+      <argument type="service" id="router.default"/>
+    </service>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory"/>
     <service id="argument_resolver.backed_enum_resolver" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\BackedEnumValueResolver">
       <tag priority="100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\BackedEnumValueResolver">controller.argument_value_resolver</tag>
@@ -374,7 +458,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.L.EDYUC"/>
+      <argument type="service" id=".service_locator.yoR9Upk"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -516,6 +600,7 @@
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_is_granted_attribute_expression_language" type="service" id="cache.security_is_granted_attribute_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="debug.security.firewall" type="service" id="debug.security.firewall" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.security_token_verifier" type="service" id="cache.security_token_verifier" on-invalid="ignore_uninitialized"/>
         <argument key="debug.security.firewall.authenticator.main" type="service" id="debug.security.firewall.authenticator.main" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.main" type="service" id="monolog.handler.main" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.console" type="service" id="monolog.handler.console" on-invalid="ignore_uninitialized"/>
@@ -602,6 +687,9 @@
           <argument>reset</argument>
         </argument>
         <argument key="debug.security.firewall" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="cache.security_token_verifier" type="collection">
           <argument>reset</argument>
         </argument>
         <argument key="debug.security.firewall.authenticator.main" type="collection">
@@ -780,6 +868,7 @@
         <argument>cache.doctrine.orm.default.query</argument>
         <argument>cache.security_expression_language</argument>
         <argument>cache.security_is_granted_attribute_expression_language</argument>
+        <argument>cache.security_token_verifier</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:clear</argument>
@@ -827,6 +916,7 @@
         <argument>cache.doctrine.orm.default.query</argument>
         <argument>cache.security_expression_language</argument>
         <argument>cache.security_is_granted_attribute_expression_language</argument>
+        <argument>cache.security_token_verifier</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:delete</argument>
@@ -851,6 +941,7 @@
         <argument>cache.doctrine.orm.default.query</argument>
         <argument>cache.security_expression_language</argument>
         <argument>cache.security_is_granted_attribute_expression_language</argument>
+        <argument>cache.security_token_verifier</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:list</argument>
@@ -1164,6 +1255,7 @@
         <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations</argument>
         <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations</argument>
         <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations</argument>
+        <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/twig-bridge/Resources/views/Email</argument>
@@ -1190,6 +1282,7 @@
         <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations</argument>
         <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations</argument>
         <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations</argument>
+        <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/twig-bridge/Resources/views/Email</argument>
@@ -1270,9 +1363,14 @@
       <argument type="service" id="form.registry"/>
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\Core\Type</argument>
+        <argument>App\Form</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\ArticleFilterType</argument>
+        <argument>App\Form\ArticleType</argument>
+        <argument>App\Form\CategorieType</argument>
+        <argument>App\Form\RegistrationFormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -1549,6 +1647,7 @@
         <argument key="cache.validator_expression_language" type="service" id="cache.validator_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_is_granted_attribute_expression_language" type="service" id="cache.security_is_granted_attribute_expression_language" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.security_token_verifier" type="service" id="cache.security_token_verifier" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
     <service id="cache.global_clearer" class="Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer" public="true">
@@ -1566,6 +1665,7 @@
         <argument key="cache.doctrine.orm.default.query" type="service" id="cache.doctrine.orm.default.query" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_is_granted_attribute_expression_language" type="service" id="cache.security_is_granted_attribute_expression_language" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.security_token_verifier" type="service" id="cache.security_token_verifier" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
     <service id="identity_translator" class="Symfony\Component\Translation\IdentityTranslator"/>
@@ -1997,6 +2097,7 @@
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.ar.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.ar.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.ar.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ar.xlf</argument>
           </argument>
           <argument key="az" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.az.xlf</argument>
@@ -2022,11 +2123,13 @@
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.ca.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.ca.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.ca.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ca.xlf</argument>
           </argument>
           <argument key="cs" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.cs.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.cs.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.cs.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.cs.xlf</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.cy.xlf</argument>
@@ -2042,21 +2145,25 @@
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.de.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.de.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.de.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.de.xlf</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.el.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.el.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.el.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.el.xlf</argument>
           </argument>
           <argument key="en" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.en.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.en.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.en.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.en.xlf</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.es.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.es.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.es.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.es.xlf</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.et.xlf</argument>
@@ -2072,16 +2179,19 @@
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.fa.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.fa.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.fa.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fa.xlf</argument>
           </argument>
           <argument key="fi" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.fi.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.fi.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.fi.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fi.xlf</argument>
           </argument>
           <argument key="fr" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.fr.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.fr.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.fr.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fr.xlf</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.gl.xlf</argument>
@@ -2102,6 +2212,7 @@
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.hu.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.hu.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.hu.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.hu.xlf</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.hy.xlf</argument>
@@ -2112,16 +2223,19 @@
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.id.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.id.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.id.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.id.xlf</argument>
           </argument>
           <argument key="it" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.it.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.it.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.it.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.it.xlf</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.ja.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.ja.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.ja.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ja.xlf</argument>
           </argument>
           <argument key="lb" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.lb.xlf</argument>
@@ -2142,11 +2256,13 @@
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.mk.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.mk.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.mk.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.mk.xlf</argument>
           </argument>
           <argument key="mn" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.mn.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.mn.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.mn.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.mn.xlf</argument>
           </argument>
           <argument key="my" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.my.xlf</argument>
@@ -2162,6 +2278,7 @@
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.nl.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.nl.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.nl.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle+intl-icu.nl.xlf</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.nn.xlf</argument>
@@ -2177,11 +2294,13 @@
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.pl.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.pl.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.pl.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.pl.xlf</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.pt.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.pt.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.pt.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.pt.xlf</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.pt_BR.xlf</argument>
@@ -2192,16 +2311,19 @@
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.ro.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.ro.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.ro.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ro.xlf</argument>
           </argument>
           <argument key="ru" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.ru.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.ru.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.ru.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ru.xlf</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.sk.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.sk.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.sk.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.sk.xlf</argument>
           </argument>
           <argument key="sl" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.sl.xlf</argument>
@@ -2242,11 +2364,13 @@
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.tr.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.tr.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.tr.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.tr.xlf</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.uk.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.uk.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.uk.xlf</argument>
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.uk.xlf</argument>
           </argument>
           <argument key="ur" type="collection">
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations/validators.ur.xlf</argument>
@@ -2273,11 +2397,15 @@
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations/validators.zh_TW.xlf</argument>
             <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations/security.zh_TW.xlf</argument>
           </argument>
+          <argument key="sr" type="collection">
+            <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.sr.xlf</argument>
+          </argument>
         </argument>
         <argument key="scanned_directories" type="collection">
           <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/validator/Resources/translations</argument>
           <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/form/Resources/translations</argument>
           <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/security-core/Resources/translations</argument>
+          <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
           <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/translations</argument>
           <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/symfony/framework-bundle/translations</argument>
           <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/vendor/doctrine/doctrine-bundle/translations</argument>
@@ -2297,6 +2425,7 @@
             <argument>vendor/symfony/validator/Resources/translations</argument>
             <argument>vendor/symfony/form/Resources/translations</argument>
             <argument>vendor/symfony/security-core/Resources/translations</argument>
+            <argument>vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
             <argument>translations</argument>
             <argument>vendor/symfony/framework-bundle/translations</argument>
             <argument>vendor/doctrine/doctrine-bundle/translations</argument>
@@ -3170,6 +3299,14 @@
         <argument>0</argument>
       </call>
       <call method="addListener">
+        <argument>kernel.response</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.rememberme.response_listener"/>
+          <argument>onKernelResponse</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
         <argument>console.command</argument>
         <argument type="collection">
           <argument type="service_closure" id="monolog.handler.console"/>
@@ -3231,7 +3368,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.L.EDYUC"/>
+      <argument type="service" id=".service_locator.yoR9Upk"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -3715,7 +3852,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.Za9MpXe"/>
+      <argument type="service" id=".service_locator.q2erhta"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4632,6 +4769,10 @@
         <argument>cache.security_is_granted_attribute_expression_language</argument>
         <argument type="service" id="cache.security_is_granted_attribute_expression_language"/>
       </call>
+      <call method="addInstance">
+        <argument>cache.security_token_verifier</argument>
+        <argument type="service" id="cache.security_token_verifier"/>
+      </call>
     </service>
     <service id="cache_pool_clearer.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\CachePoolClearerCacheWarmer">
       <tag name="kernel.cache_warmer" priority="64"/>
@@ -4962,7 +5103,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.Xbsa8iG"/>
+      <argument type="service" id=".service_locator.JgR_so2"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -6029,7 +6170,7 @@
       <argument type="service" id=".service_locator.BlxN3Cw"/>
       <argument type="collection">
         <argument key="dev">null</argument>
-        <argument key="main">null</argument>
+        <argument key="main" type="service" id=".service_locator.77ktH4N"/>
       </argument>
     </service>
     <service id="security.user_value_resolver" class="Symfony\Component\Security\Http\Controller\UserValueResolver">
@@ -6116,6 +6257,14 @@
       <argument type="service" id="request_stack" on-invalid="null"/>
       <argument type="service" id="router.default" on-invalid="null"/>
       <argument type="service" id="security.token_storage" on-invalid="null"/>
+      <call method="registerListener">
+        <argument>main</argument>
+        <argument>app_logout</argument>
+        <argument>logout</argument>
+        <argument>_csrf_token</argument>
+        <argument>null</argument>
+        <argument>null</argument>
+      </call>
     </service>
     <service id="security.route_loader.logout" class="Symfony\Bundle\SecurityBundle\Routing\LogoutRouteLoader">
       <tag name="routing.route_loader"/>
@@ -6219,7 +6368,7 @@
       <tag name="monolog.logger" channel="security"/>
       <argument type="service" id="security.untracked_token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+        <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
       </argument>
       <argument type="abstract">Provider Key</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -6345,7 +6494,7 @@
     </service>
     <service id="security.listener.user_provider" class="Symfony\Component\Security\Http\EventListener\UserProviderListener">
       <tag name="kernel.event_listener" event="Symfony\Component\Security\Http\Event\CheckPassportEvent" priority="1024" method="checkPassport"/>
-      <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
     </service>
     <service id="security.listener.user_provider.abstract" class="Symfony\Component\Security\Http\EventListener\UserProviderListener" abstract="true">
       <argument type="abstract">user provider</argument>
@@ -6500,7 +6649,10 @@
       <argument type="service" id=".service_locator.zJyh7qS"/>
       <argument type="service" id=".service_locator._1SGciK"/>
       <argument type="collection">
-        <argument key="main" type="collection"/>
+        <argument key="main" type="collection">
+          <argument type="service" id="App\Security\UserAuthenticator"/>
+          <argument type="service" id="security.authenticator.remember_me.main"/>
+        </argument>
       </argument>
       <argument>false</argument>
       <call method="setName">
@@ -6510,8 +6662,11 @@
         <argument>Display information about your security firewall(s)</argument>
       </call>
     </service>
-    <service id="security.user.provider.concrete.users_in_memory" class="Symfony\Component\Security\Core\User\InMemoryUserProvider">
-      <argument type="collection"/>
+    <service id="security.user.provider.concrete.app_user_provider" class="Symfony\Bridge\Doctrine\Security\User\EntityUserProvider">
+      <argument type="service" id="doctrine"/>
+      <argument>App\Entity\User</argument>
+      <argument>email</argument>
+      <argument>null</argument>
     </service>
     <service id="security.firewall.map.config.dev" class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig">
       <argument>dev</argument>
@@ -6548,18 +6703,30 @@
       <argument>null</argument>
       <argument>true</argument>
       <argument>false</argument>
-      <argument>security.user.provider.concrete.users_in_memory</argument>
+      <argument>security.user.provider.concrete.app_user_provider</argument>
       <argument>main</argument>
+      <argument>App\Security\UserAuthenticator</argument>
       <argument>null</argument>
       <argument>null</argument>
+      <argument type="collection">
+        <argument>remember_me</argument>
+        <argument>App\Security\UserAuthenticator</argument>
+      </argument>
       <argument>null</argument>
-      <argument type="collection"/>
-      <argument>null</argument>
-      <argument>null</argument>
+      <argument type="collection">
+        <argument key="path">app_logout</argument>
+        <argument key="enable_csrf">null</argument>
+        <argument key="csrf_token_id">logout</argument>
+        <argument key="csrf_parameter">_csrf_token</argument>
+        <argument key="target">/</argument>
+        <argument key="invalidate_session">true</argument>
+        <argument key="clear_site_data" type="collection"/>
+        <argument key="delete_cookies" type="collection"/>
+      </argument>
     </service>
     <service id="security.listener.main.user_provider" class="Symfony\Component\Security\Http\EventListener\UserProviderListener">
       <tag name="kernel.event_listener" dispatcher="debug.security.event_dispatcher.main" event="Symfony\Component\Security\Http\Event\CheckPassportEvent" priority="2048" method="checkPassport"/>
-      <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
     </service>
     <service id="security.user_checker.chain.main" class="Symfony\Component\Security\Core\User\ChainUserChecker">
       <argument type="tagged_iterator" tag="security.user_checker.main"/>
@@ -6569,7 +6736,7 @@
       <tag name="container.hot_path"/>
       <argument type="service" id="security.untracked_token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+        <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
       </argument>
       <argument>main</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -6584,9 +6751,138 @@
       <tag name="kernel.event_subscriber" dispatcher="debug.security.event_dispatcher.main"/>
       <argument type="service" id="security.authentication.session_strategy"/>
     </service>
+    <service id="security.logout_listener.main" class="Symfony\Component\Security\Http\Firewall\LogoutListener">
+      <argument type="service" id="security.token_storage"/>
+      <argument type="service" id="security.http_utils"/>
+      <argument type="service" id="debug.security.event_dispatcher.main"/>
+      <argument type="collection">
+        <argument key="csrf_parameter">_csrf_token</argument>
+        <argument key="csrf_token_id">logout</argument>
+        <argument key="logout_path">app_logout</argument>
+      </argument>
+    </service>
+    <service id="security.logout.listener.default.main" class="Symfony\Component\Security\Http\EventListener\DefaultLogoutListener">
+      <tag name="kernel.event_subscriber" dispatcher="debug.security.event_dispatcher.main"/>
+      <argument type="service" id="security.http_utils"/>
+      <argument>/</argument>
+    </service>
+    <service id="security.logout.listener.session.main" class="Symfony\Component\Security\Http\EventListener\SessionLogoutListener">
+      <tag name="kernel.event_subscriber" dispatcher="debug.security.event_dispatcher.main"/>
+    </service>
+    <service id="security.rememberme.response_listener" class="Symfony\Component\Security\Http\RememberMe\ResponseListener">
+      <tag name="kernel.event_subscriber"/>
+      <tag name="container.hot_path"/>
+    </service>
+    <service id="security.authenticator.remember_me_signature_hasher" class="Symfony\Component\Security\Core\Signature\SignatureHasher">
+      <argument type="service" id="property_accessor"/>
+      <argument type="abstract">signature properties</argument>
+      <argument>%env(APP_SECRET)%</argument>
+      <argument>null</argument>
+      <argument>null</argument>
+    </service>
+    <service id="security.authenticator.signature_remember_me_handler" class="Symfony\Component\Security\Http\RememberMe\SignatureRememberMeHandler" abstract="true">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="abstract">signature hasher</argument>
+      <argument type="abstract">user provider</argument>
+      <argument type="service" id="request_stack"/>
+      <argument type="abstract">options</argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
+    <service id="security.authenticator.persistent_remember_me_handler" class="Symfony\Component\Security\Http\RememberMe\PersistentRememberMeHandler" abstract="true">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="abstract">token provider</argument>
+      <argument type="abstract">user provider</argument>
+      <argument type="service" id="request_stack"/>
+      <argument type="abstract">options</argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+      <argument type="abstract">token verifier</argument>
+    </service>
+    <service id="security.authenticator.firewall_aware_remember_me_handler" class="Symfony\Bundle\SecurityBundle\RememberMe\FirewallAwareRememberMeHandler">
+      <argument type="service" id="security.firewall.map"/>
+      <argument type="service" id=".service_locator.Ar70cHn"/>
+      <argument type="service" id="request_stack"/>
+    </service>
+    <service id="security.listener.check_remember_me_conditions" class="Symfony\Component\Security\Http\EventListener\CheckRememberMeConditionsListener" abstract="true">
+      <argument type="abstract">options</argument>
+      <argument type="service" id="monolog.logger" on-invalid="null"/>
+    </service>
+    <service id="security.listener.remember_me" class="Symfony\Component\Security\Http\EventListener\RememberMeListener" abstract="true">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="abstract">remember me handler</argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
+    <service id="security.authenticator.remember_me" class="Symfony\Component\Security\Http\Authenticator\RememberMeAuthenticator" abstract="true">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="abstract">remember me handler</argument>
+      <argument>%env(APP_SECRET)%</argument>
+      <argument type="service" id="security.token_storage"/>
+      <argument type="abstract">options</argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
+    <service id="cache.security_token_verifier" class="Symfony\Component\Cache\Adapter\TraceableAdapter">
+      <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
+      <argument type="service" id="cache.security_token_verifier.recorder_inner"/>
+    </service>
+    <service id="security.authenticator.remember_me_signature_hasher.main" class="Symfony\Component\Security\Core\Signature\SignatureHasher">
+      <argument type="service" id="property_accessor"/>
+      <argument type="collection">
+        <argument>password</argument>
+      </argument>
+      <argument>%env(APP_SECRET)%</argument>
+      <argument>null</argument>
+      <argument>null</argument>
+    </service>
+    <service id="security.authenticator.remember_me_handler.main" class="Symfony\Component\Security\Http\RememberMe\SignatureRememberMeHandler">
+      <tag name="security.remember_me_handler" firewall="main"/>
+      <argument type="service" id="security.authenticator.remember_me_signature_hasher.main"/>
+      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
+      <argument type="service" id="request_stack"/>
+      <argument type="collection">
+        <argument key="secret">%env(APP_SECRET)%</argument>
+        <argument key="lifetime">604800</argument>
+        <argument key="path">/</argument>
+        <argument key="user_providers" type="collection"/>
+        <argument key="catch_exceptions">true</argument>
+        <argument key="signature_properties" type="collection">
+          <argument>password</argument>
+        </argument>
+        <argument key="name">REMEMBERME</argument>
+        <argument key="domain">null</argument>
+        <argument key="secure">false</argument>
+        <argument key="httponly">true</argument>
+        <argument key="samesite">null</argument>
+        <argument key="always_remember_me">false</argument>
+        <argument key="remember_me_parameter">_remember_me</argument>
+      </argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
+    <service id="security.listener.check_remember_me_conditions.main" class="Symfony\Component\Security\Http\EventListener\CheckRememberMeConditionsListener">
+      <tag name="kernel.event_subscriber" dispatcher="debug.security.event_dispatcher.main"/>
+      <argument type="collection">
+        <argument key="always_remember_me">false</argument>
+        <argument key="remember_me_parameter">_remember_me</argument>
+      </argument>
+      <argument type="service" id="monolog.logger" on-invalid="null"/>
+    </service>
+    <service id="security.listener.remember_me.main" class="Symfony\Component\Security\Http\EventListener\RememberMeListener">
+      <tag name="kernel.event_subscriber" dispatcher="debug.security.event_dispatcher.main"/>
+      <argument type="service" id="security.authenticator.remember_me_handler.main"/>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
+    <service id="security.authenticator.remember_me.main" class="Symfony\Component\Security\Http\Authenticator\RememberMeAuthenticator">
+      <argument type="service" id="security.authenticator.remember_me_handler.main"/>
+      <argument>%env(APP_SECRET)%</argument>
+      <argument type="service" id="security.token_storage"/>
+      <argument>REMEMBERME</argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
     <service id="security.authenticator.manager.main" class="Symfony\Component\Security\Http\Authentication\AuthenticatorManager">
       <tag name="monolog.logger" channel="security"/>
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument type="service" id="App\Security\UserAuthenticator"/>
+        <argument type="service" id="security.authenticator.remember_me.main"/>
+      </argument>
       <argument type="service" id="security.token_storage"/>
       <argument type="service" id="debug.security.event_dispatcher.main"/>
       <argument>main</argument>
@@ -6609,11 +6905,18 @@
       <argument type="service" id="security.authentication.trust_resolver"/>
       <argument type="service" id="security.http_utils"/>
       <argument>main</argument>
-      <argument>null</argument>
+      <argument type="service" id="App\Security\UserAuthenticator"/>
       <argument>null</argument>
       <argument>null</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument>false</argument>
+    </service>
+    <service id=".service_locator.77ktH4N" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="App\Security\UserAuthenticator" type="service_closure" id="App\Security\UserAuthenticator"/>
+        <argument key="security.authenticator.remember_me.main" type="service_closure" id="security.authenticator.remember_me.main"/>
+      </argument>
     </service>
     <service id="security.firewall.map.context.main" class="Symfony\Bundle\SecurityBundle\Security\LazyFirewallContext">
       <argument type="iterator">
@@ -6623,7 +6926,7 @@
         <argument type="service" id="security.access_listener"/>
       </argument>
       <argument type="service" id="security.exception_listener.main"/>
-      <argument>null</argument>
+      <argument type="service" id="security.logout_listener.main"/>
       <argument type="service" id="security.firewall.map.config.main"/>
       <argument type="service" id="security.untracked_token_storage"/>
     </service>
@@ -6902,6 +7205,57 @@
       <argument type="service" id="maker.file_manager"/>
       <argument type="service" id="maker.generator"/>
     </service>
+    <service id="symfonycasts.verify_email.token_generator" class="SymfonyCasts\Bundle\VerifyEmail\Generator\VerifyEmailTokenGenerator">
+      <argument>%env(APP_SECRET)%</argument>
+    </service>
+    <service id="symfonycasts.verify_email.query_utility" class="SymfonyCasts\Bundle\VerifyEmail\Util\VerifyEmailQueryUtility"/>
+    <service id="symfonycasts.verify_email.uri_signer_factory" class="SymfonyCasts\Bundle\VerifyEmail\Factory\UriSignerFactory">
+      <argument>%env(APP_SECRET)%</argument>
+      <argument>signature</argument>
+    </service>
+    <service id="symfonycasts.verify_email.uri_signer" class="Symfony\Component\HttpFoundation\UriSigner">
+      <factory service="symfonycasts.verify_email.uri_signer_factory" method="createUriSigner"/>
+    </service>
+    <service id="symfonycasts.verify_email.helper" class="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelper">
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="symfonycasts.verify_email.uri_signer"/>
+      <argument type="service" id="symfonycasts.verify_email.query_utility"/>
+      <argument type="service" id="symfonycasts.verify_email.token_generator"/>
+      <argument>3600</argument>
+    </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ArticleController" class="App\Controller\ArticleController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CategorieController" class="App\Controller\CategorieController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CategorieController" class="App\Controller\CategorieController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CategorieController" class="App\Controller\CategorieController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PanierController" class="App\Controller\PanierController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PanierController" class="App\Controller\PanierController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\PanierController" class="App\Controller\PanierController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ArticleFilterType" class="App\Form\ArticleFilterType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ArticleFilterType" class="App\Form\ArticleFilterType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ArticleType" class="App\Form\ArticleType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ArticleType" class="App\Form\ArticleType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CategorieType" class="App\Form\CategorieType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\CategorieType" class="App\Form\CategorieType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ArticleRepository" class="App\Repository\ArticleRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ArticleRepository" class="App\Repository\ArticleRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CategorieRepository" class="App\Repository\CategorieRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CategorieRepository" class="App\Repository\CategorieRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CommandeRepository" class="App\Repository\CommandeRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CommandeRepository" class="App\Repository\CommandeRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\LigneCommandeRepository" class="App\Repository\LigneCommandeRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\LigneCommandeRepository" class="App\Repository\LigneCommandeRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.bJ.4HC5" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7325,13 +7679,106 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.y4_Zrx..Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
-    <service id=".service_locator.L.EDYUC" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.b12wXHr" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="articleRepository" type="service_closure" id="App\Repository\ArticleRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.CsMkqUa" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.XqCCpgA" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="article" type="service_closure" id=".errored..service_locator.XqCCpgA.App\Entity\Article"/>
+      </argument>
+    </service>
+    <service id=".service_locator.zwPUnYq" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="article" type="service_closure" id=".errored..service_locator.zwPUnYq.App\Entity\Article"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.DFyL8OH" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="categorieRepository" type="service_closure" id="App\Repository\CategorieRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.j7wOkYK" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="categorie" type="service_closure" id=".errored..service_locator.j7wOkYK.App\Entity\Categorie"/>
+      </argument>
+    </service>
+    <service id=".service_locator.aw9RHlF" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="categorie" type="service_closure" id=".errored..service_locator.aw9RHlF.App\Entity\Categorie"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.V6D1oJY" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="userPasswordHasher" type="service_closure" id="security.user_password_hasher"/>
+      </argument>
+    </service>
+    <service id=".service_locator.1Z9fEX7" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="translator" type="service_closure" id="translator.data_collector"/>
+      </argument>
+    </service>
+    <service id=".service_locator.rSTd.nA" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
+      </argument>
+    </service>
+    <service id=".service_locator.yoR9Upk" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="App\Controller\ArticleController::delete" type="service_closure" id=".service_locator.zwPUnYq"/>
+        <argument key="App\Controller\ArticleController::edit" type="service_closure" id=".service_locator.zwPUnYq"/>
+        <argument key="App\Controller\ArticleController::index" type="service_closure" id=".service_locator.b12wXHr"/>
+        <argument key="App\Controller\ArticleController::new" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\ArticleController::show" type="service_closure" id=".service_locator.XqCCpgA"/>
+        <argument key="App\Controller\CategorieController::consoles" type="service_closure" id=".service_locator.b12wXHr"/>
+        <argument key="App\Controller\CategorieController::delete" type="service_closure" id=".service_locator.aw9RHlF"/>
+        <argument key="App\Controller\CategorieController::edit" type="service_closure" id=".service_locator.aw9RHlF"/>
+        <argument key="App\Controller\CategorieController::index" type="service_closure" id=".service_locator.DFyL8OH"/>
+        <argument key="App\Controller\CategorieController::jeux" type="service_closure" id=".service_locator.b12wXHr"/>
+        <argument key="App\Controller\CategorieController::new" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\CategorieController::show" type="service_closure" id=".service_locator.j7wOkYK"/>
+        <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.V6D1oJY"/>
+        <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.1Z9fEX7"/>
+        <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
+        <argument key="App\Controller\ArticleController:delete" type="service_closure" id=".service_locator.zwPUnYq"/>
+        <argument key="App\Controller\ArticleController:edit" type="service_closure" id=".service_locator.zwPUnYq"/>
+        <argument key="App\Controller\ArticleController:index" type="service_closure" id=".service_locator.b12wXHr"/>
+        <argument key="App\Controller\ArticleController:new" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\ArticleController:show" type="service_closure" id=".service_locator.XqCCpgA"/>
+        <argument key="App\Controller\CategorieController:consoles" type="service_closure" id=".service_locator.b12wXHr"/>
+        <argument key="App\Controller\CategorieController:delete" type="service_closure" id=".service_locator.aw9RHlF"/>
+        <argument key="App\Controller\CategorieController:edit" type="service_closure" id=".service_locator.aw9RHlF"/>
+        <argument key="App\Controller\CategorieController:index" type="service_closure" id=".service_locator.DFyL8OH"/>
+        <argument key="App\Controller\CategorieController:jeux" type="service_closure" id=".service_locator.b12wXHr"/>
+        <argument key="App\Controller\CategorieController:new" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\CategorieController:show" type="service_closure" id=".service_locator.j7wOkYK"/>
+        <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.V6D1oJY"/>
+        <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.1Z9fEX7"/>
+        <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
       </argument>
@@ -7493,9 +7940,13 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.Za9MpXe" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.q2erhta" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\ArticleFilterType" type="service_closure" id="App\Form\ArticleFilterType"/>
+        <argument key="App\Form\ArticleType" type="service_closure" id="App\Form\ArticleType"/>
+        <argument key="App\Form\CategorieType" type="service_closure" id="App\Form\CategorieType"/>
+        <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ColorType" type="service_closure" id="form.type.color"/>
@@ -7621,9 +8072,15 @@
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.Xbsa8iG" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.JgR_so2" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="App\Repository\ArticleRepository" type="service_closure" id="App\Repository\ArticleRepository"/>
+        <argument key="App\Repository\CategorieRepository" type="service_closure" id="App\Repository\CategorieRepository"/>
+        <argument key="App\Repository\CommandeRepository" type="service_closure" id="App\Repository\CommandeRepository"/>
+        <argument key="App\Repository\LigneCommandeRepository" type="service_closure" id="App\Repository\LigneCommandeRepository"/>
+        <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
+      </argument>
     </service>
     <service id=".service_locator.KLVvNIq" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -7862,6 +8319,62 @@
         <argument>0</argument>
       </call>
       <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\LogoutEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.logout.listener.default.main"/>
+          <argument>onLogout</argument>
+        </argument>
+        <argument>64</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\LogoutEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.logout.listener.session.main"/>
+          <argument>onLogout</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\LoginSuccessEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.listener.check_remember_me_conditions.main"/>
+          <argument>onSuccessfulLogin</argument>
+        </argument>
+        <argument>-32</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\LoginSuccessEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.listener.remember_me.main"/>
+          <argument>onSuccessfulLogin</argument>
+        </argument>
+        <argument>-64</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\LoginFailureEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.listener.remember_me.main"/>
+          <argument>clearCookie</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\LogoutEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.listener.remember_me.main"/>
+          <argument>clearCookie</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\TokenDeauthenticatedEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.listener.remember_me.main"/>
+          <argument>clearCookie</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
         <argument>Symfony\Component\Security\Http\Event\CheckPassportEvent</argument>
         <argument type="collection">
           <argument type="service_closure" id="security.listener.user_checker.main"/>
@@ -7917,6 +8430,52 @@
         </argument>
         <argument>0</argument>
       </call>
+    </service>
+    <service id=".service_locator.jUv.zyj" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="form.factory" type="service_closure" id="form.factory" on-invalid="ignore"/>
+        <argument key="http_kernel" type="service_closure" id="http_kernel" on-invalid="ignore"/>
+        <argument key="parameter_bag" type="service_closure" id="parameter_bag" on-invalid="ignore"/>
+        <argument key="request_stack" type="service_closure" id="request_stack" on-invalid="ignore"/>
+        <argument key="router" type="service_closure" id="router.default" on-invalid="ignore"/>
+        <argument key="security.authorization_checker" type="service_closure" id="security.authorization_checker" on-invalid="ignore"/>
+        <argument key="security.csrf.token_manager" type="service_closure" id="security.csrf.token_manager" on-invalid="ignore"/>
+        <argument key="security.token_storage" type="service_closure" id="security.token_storage" on-invalid="ignore"/>
+        <argument key="serializer" type="service_closure" id="debug.serializer" on-invalid="ignore"/>
+        <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
+        <argument key="web_link.http_header_serializer" type="service_closure" id="web_link.http_header_serializer" on-invalid="ignore"/>
+      </argument>
+    </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\ArticleController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ArticleController"/>
+      <argument>App\Controller\ArticleController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
+    </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\CategorieController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CategorieController"/>
+      <argument>App\Controller\CategorieController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
+    </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\PanierController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PanierController"/>
+      <argument>App\Controller\PanierController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
+    </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\RegistrationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\RegistrationController"/>
+      <argument>App\Controller\RegistrationController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
+    </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\SecurityController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\SecurityController"/>
+      <argument>App\Controller\SecurityController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
     </service>
     <service id=".service_locator.fuYM_Z." class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -7991,6 +8550,10 @@
         <argument key="reverse_container" type="service_closure" id="reverse_container" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
+    <service id=".service_locator.Xbsa8iG" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
     <service id=".service_locator.NBUFN6A" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8055,6 +8618,12 @@
         <argument key="security.user_checker" type="service_closure" id="security.user_checker"/>
       </argument>
     </service>
+    <service id=".service_locator.Ar70cHn" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="main" type="service_closure" id="security.authenticator.remember_me_handler.main"/>
+      </argument>
+    </service>
     <service id="debug.validator.inner" class="Symfony\Component\Validator\Validator\ValidatorInterface">
       <factory service="validator.builder" method="getValidator"/>
     </service>
@@ -8087,6 +8656,11 @@
       <call method="allowControllers">
         <argument type="collection">
           <argument>App\Kernel</argument>
+          <argument>App\Controller\ArticleController</argument>
+          <argument>App\Controller\CategorieController</argument>
+          <argument>App\Controller\PanierController</argument>
+          <argument>App\Controller\RegistrationController</argument>
+          <argument>App\Controller\SecurityController</argument>
           <argument>Doctrine\Bundle\DoctrineBundle\Controller\ProfilerController</argument>
         </argument>
       </call>
@@ -8283,6 +8857,18 @@
     <service id="debug.security.event_dispatcher.main.inner" class="Symfony\Component\EventDispatcher\EventDispatcher"/>
     <service id=".errored..service_locator.y4_Zrx..Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.y4_Zrx.&quot;: it needs an instance of &quot;Symfony\Component\Config\Loader\LoaderInterface&quot; but this type has been excluded from autowiring."/>
+    </service>
+    <service id=".errored..service_locator.XqCCpgA.App\Entity\Article" class="App\Entity\Article">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.XqCCpgA&quot;: it needs an instance of &quot;App\Entity\Article&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".errored..service_locator.zwPUnYq.App\Entity\Article" class="App\Entity\Article">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.zwPUnYq&quot;: it needs an instance of &quot;App\Entity\Article&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".errored..service_locator.j7wOkYK.App\Entity\Categorie" class="App\Entity\Categorie">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.j7wOkYK&quot;: it needs an instance of &quot;App\Entity\Categorie&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".errored..service_locator.aw9RHlF.App\Entity\Categorie" class="App\Entity\Categorie">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.aw9RHlF&quot;: it needs an instance of &quot;App\Entity\Categorie&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>about</argument>
@@ -9283,6 +9869,14 @@
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
+    <service id="cache.security_token_verifier.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface">
+      <argument>1+BAqYXhMm</argument>
+      <argument>0</argument>
+      <argument>%container.build_id%</argument>
+      <argument>/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/var/cache/dev/pools/system</argument>
+      <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
+      <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
+    </service>
     <service id=".service_locator.MsHkddy" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -9419,17 +10013,19 @@
     <service id="Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface" alias="security.user_password_hasher"/>
     <service id="Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface" alias="security.user_authenticator"/>
     <service id="security.firewall" alias="debug.security.firewall"/>
-    <service id="security.user_providers" alias="security.user.provider.concrete.users_in_memory"/>
-    <service id="Symfony\Component\Security\Core\User\UserProviderInterface" alias="security.user.provider.concrete.users_in_memory"/>
+    <service id="security.user_providers" alias="security.user.provider.concrete.app_user_provider"/>
+    <service id="Symfony\Component\Security\Core\User\UserProviderInterface" alias="security.user.provider.concrete.app_user_provider"/>
     <service id="security.authentication.session_strategy.main" alias="security.authentication.session_strategy"/>
+    <service id="Symfony\Component\Security\Http\RememberMe\RememberMeHandlerInterface" alias="security.authenticator.firewall_aware_remember_me_handler"/>
     <service id="security.user_checker.main" alias="security.user_checker"/>
     <service id="security.firewall.context_locator" alias=".service_locator.zJyh7qS"/>
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
+    <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.bJ.4HC5" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.L.EDYUC"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.yoR9Upk"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9472,5 +10068,16 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id="security.event_dispatcher.main" alias="debug.security.event_dispatcher.main"/>
     <service id=".service_locator.gFlme_s" alias=".service_locator.y4_Zrx."/>
+    <service id=".service_locator.XqClUT3" alias=".service_locator.b12wXHr"/>
+    <service id=".service_locator.9e2t_lq" alias=".service_locator.CsMkqUa"/>
+    <service id=".service_locator.s.PmVJl" alias=".service_locator.XqCCpgA"/>
+    <service id=".service_locator.ct6Q_Tx" alias=".service_locator.zwPUnYq"/>
+    <service id=".service_locator.J7lSc4B" alias=".service_locator.DFyL8OH"/>
+    <service id=".service_locator.2whhcc6" alias=".service_locator.j7wOkYK"/>
+    <service id=".service_locator.n6yy7k1" alias=".service_locator.aw9RHlF"/>
+    <service id=".service_locator.qnm_CJ1" alias=".service_locator.V6D1oJY"/>
+    <service id=".service_locator.5cKt1SW" alias=".service_locator.1Z9fEX7"/>
+    <service id=".service_locator.7NIAq8D" alias=".service_locator.rSTd.nA"/>
+    <service id=".service_locator.Q1z.f9O" alias=".service_locator.jUv.zyj"/>
   </services>
 </container>
