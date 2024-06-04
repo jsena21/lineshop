@@ -1,13 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-<<<<<<< HEAD
-        'reference' => 'efe958475b59267c9945bd55f7ab686947bf3d0d',
-=======
-        'reference' => 'e5f53fe739e005b6145f93873c4c2a2f0b1078b9',
->>>>>>> Farid
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => null,
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -15,13 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-<<<<<<< HEAD
-            'reference' => 'efe958475b59267c9945bd55f7ab686947bf3d0d',
-=======
-            'reference' => 'e5f53fe739e005b6145f93873c4c2a2f0b1078b9',
->>>>>>> Farid
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => null,
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
