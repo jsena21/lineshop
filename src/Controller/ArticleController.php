@@ -10,28 +10,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use App\Form\ArticleFilterType;
 
 class ArticleController extends AbstractController
 {
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository, Request $request): Response
+    public function index(ArticleRepository $articleRepository): Response
     {
-        $form = $this->createForm(ArticleFilterType::class);
-        $form->handleRequest($request);
-
-        $articles = $articleRepository->findAll();
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $category = $form->get('category')->getData();
-            if ($category) {
-                $articles = $articleRepository->findByCategory($category->getName());
-            }
-        }
-
         return $this->render('article/index.html.twig', [
-            'articles' => $articles,
-            'form' => $form->createView(),
+            'articles' => $articleRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/article', name: 'app_article_list', methods: ['GET'])]
+    public function list(ArticleRepository $articleRepository): Response
+    {
+        return $this->render('article/list.html.twig', [
+            'articles' => $articleRepository->findAll(),
         ]);
     }
 
