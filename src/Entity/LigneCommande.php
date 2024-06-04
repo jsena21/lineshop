@@ -13,14 +13,14 @@ class LigneCommande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $quantite = null;
 
     #[ORM\ManyToOne(inversedBy: 'ligneCommandes')]
-    private ?Commande $commande = null;
+    private ?Article $article = null;
 
     #[ORM\ManyToOne(inversedBy: 'ligneCommandes')]
-    private ?Article $article = null;
+    private ?Commande $commande = null;
 
     public function getId(): ?int
     {
@@ -32,21 +32,9 @@ class LigneCommande
         return $this->quantite;
     }
 
-    public function setQuantite(?int $quantite): static
+    public function setQuantite(int $quantite): static
     {
         $this->quantite = $quantite;
-
-        return $this;
-    }
-
-    public function getCommande(): ?Commande
-    {
-        return $this->commande;
-    }
-
-    public function setCommande(?Commande $commande): static
-    {
-        $this->commande = $commande;
 
         return $this;
     }
@@ -59,6 +47,18 @@ class LigneCommande
     public function setArticle(?Article $article): static
     {
         $this->article = $article;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): static
+    {
+        $this->commande = $commande;
 
         return $this;
     }

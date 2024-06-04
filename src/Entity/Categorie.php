@@ -15,7 +15,7 @@ class Categorie
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 100)]
     private ?string $libelle = null;
 
     /**
@@ -39,7 +39,7 @@ class Categorie
         return $this->libelle;
     }
 
-    public function setLibelle(?string $libelle): static
+    public function setLibelle(string $libelle): static
     {
         $this->libelle = $libelle;
 

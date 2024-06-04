@@ -19,17 +19,17 @@ class Commande
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $montant = null;
-
-    #[ORM\ManyToOne(inversedBy: 'commandes')]
-    private ?User $user = null;
 
     /**
      * @var Collection<int, LigneCommande>
      */
     #[ORM\OneToMany(targetEntity: LigneCommande::class, mappedBy: 'commande')]
     private Collection $ligneCommandes;
+
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -58,21 +58,9 @@ class Commande
         return $this->montant;
     }
 
-    public function setMontant(?string $montant): static
+    public function setMontant(string $montant): static
     {
         $this->montant = $montant;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        $this->user = $user;
 
         return $this;
     }
@@ -103,6 +91,18 @@ class Commande
                 $ligneCommande->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

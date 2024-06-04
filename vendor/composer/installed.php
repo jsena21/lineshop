@@ -3,7 +3,11 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
+<<<<<<< HEAD
         'reference' => 'efe958475b59267c9945bd55f7ab686947bf3d0d',
+=======
+        'reference' => 'e5f53fe739e005b6145f93873c4c2a2f0b1078b9',
+>>>>>>> Farid
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +17,11 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+<<<<<<< HEAD
             'reference' => 'efe958475b59267c9945bd55f7ab686947bf3d0d',
+=======
+            'reference' => 'e5f53fe739e005b6145f93873c4c2a2f0b1078b9',
+>>>>>>> Farid
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1280,6 +1288,15 @@
             'reference' => '0d3916ae69ea28b59d94b60c4f2b50f4e25adb5c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/yaml',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfonycasts/verify-email-bundle' => array(
+            'pretty_version' => 'v1.17.0',
+            'version' => '1.17.0.0',
+            'reference' => 'f72af149070b39ef82a7095074378d0a98b4d2ef',
+            'type' => 'symfony-bundle',
+            'install_path' => __DIR__ . '/../symfonycasts/verify-email-bundle',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

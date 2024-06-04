@@ -1,32 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}LineShop
+{% block title %}LineshoP Welcome !
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('styles/home.css') }}">
 {% endblock %}
 
 {% block body %}
-	{% if session.user is defined %}
-		<p class="text">
-			Welcome aaa@a.fr you can
-			<a class="logout" href="{{path('app_logout')}}">Logout</a>
-		</p>
-	{% else %}
-		<p class="text">
-			Welcome, you can
-			<a class="logout" href="{{path('app_login')}}">login</a>
-		</p>
-	{% endif %}
-	<ul>
-		<li>
-			<a href="#">All Categories</a>
-		</li>
-		<li>
-			<a href="#">Consoles</a>
-		</li>
-		<li>
-			<a href="#">Jeux</a>
-		</li>
-	</ul>
-	<div class="container mt-5">
+	<div class="container mt-4">
 		<div class="row">
 			{% for article in articles %}
 				<div class="col-md-3 mb-4">
@@ -72,8 +55,4 @@
 			{% endfor %}
 		</div>
 	</div>
-
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>{% endblock %}
+{% endblock %}
