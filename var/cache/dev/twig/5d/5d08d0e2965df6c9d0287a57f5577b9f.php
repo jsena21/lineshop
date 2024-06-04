@@ -27,6 +27,7 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
 
         $this->blocks = [
             'title' => [$this, 'block_title'],
+            'stylesheets' => [$this, 'block_stylesheets'],
             'body' => [$this, 'block_body'],
         ];
     }
@@ -66,7 +67,7 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        yield "LineShop
+        yield "LineshoP Welcome !
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -78,6 +79,34 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
     }
 
     // line 6
+    public function block_stylesheets($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        // line 7
+        yield "\t";
+        yield from $this->yieldParentBlock("stylesheets", $context, $blocks);
+        yield "
+\t<link rel=\"stylesheet\" href=\"";
+        // line 8
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("styles/home.css"), "html", null, true);
+        yield "\">
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        return; yield '';
+    }
+
+    // line 11
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -87,69 +116,35 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 7
-        yield "\t";
-        if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "user", [], "any", true, true, false, 7)) {
-            // line 8
-            yield "\t\t<p class=\"text\">
-\t\t\tWelcome aaa@a.fr you can
-\t\t\t<a class=\"logout\" href=\"";
-            // line 10
-            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
-            yield "\">Logout</a>
-\t\t</p>
-\t";
-        } else {
-            // line 13
-            yield "\t\t<p class=\"text\">
-\t\t\tWelcome, you can
-\t\t\t<a class=\"logout\" href=\"";
-            // line 15
-            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            yield "\">login</a>
-\t\t</p>
-\t";
-        }
-        // line 18
-        yield "\t<ul>
-\t\t<li>
-\t\t\t<a href=\"#\">All Categories</a>
-\t\t</li>
-\t\t<li>
-\t\t\t<a href=\"#\">Consoles</a>
-\t\t</li>
-\t\t<li>
-\t\t\t<a href=\"#\">Jeux</a>
-\t\t</li>
-\t</ul>
-\t<div class=\"container mt-5\">
+        // line 12
+        yield "\t<div class=\"container mt-4\">
 \t\t<div class=\"row\">
 \t\t\t";
-        // line 31
+        // line 14
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 31, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["articles"]) || array_key_exists("articles", $context) ? $context["articles"] : (function () { throw new RuntimeError('Variable "articles" does not exist.', 14, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
-            // line 32
+            // line 15
             yield "\t\t\t\t<div class=\"col-md-3 mb-4\">
 \t\t\t\t\t<div class=\"card border border-success shadow-lg\">
 \t\t\t\t\t\t<img src=\"";
-            // line 34
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("images/" . CoreExtension::getAttribute($this->env, $this->source, $context["article"], "image", [], "any", false, false, false, 34))), "html", null, true);
+            // line 17
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("images/" . CoreExtension::getAttribute($this->env, $this->source, $context["article"], "image", [], "any", false, false, false, 17))), "html", null, true);
             yield "\" width=\"auto\" height=\"200px\" alt=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 34), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "description", [], "any", false, false, false, 17), "html", null, true);
             yield "\">
 \t\t\t\t\t\t<div class=\"card-body bg-success-subtle border-top border-success\">
 \t\t\t\t\t\t\t<div class=\"row justify-content-center align-items-center\">
 \t\t\t\t\t\t\t\t<div class=\"col-8 border-right border-success\">
 \t\t\t\t\t\t\t\t\t<div class=\"fs-6 text card-title\">";
-            // line 38
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 38), "html", null, true);
+            // line 21
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 21), "html", null, true);
             yield "</div>
 \t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t<div class=\"col-4 text-right\">
 \t\t\t\t\t\t\t\t\t<div class=\"fs-4 text card-title text-success\">";
-            // line 41
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 41), "html", null, true);
+            // line 24
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 24), "html", null, true);
             yield "
 \t\t\t\t\t\t\t\t\t\t€</div>
 \t\t\t\t\t\t\t\t</div>
@@ -186,14 +181,10 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['article'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 73
+        // line 56
         yield "\t\t</div>
 \t</div>
-
-\t<script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script>
-\t<script src=\"https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js\"></script>
-\t<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js\"></script>
-</body>";
+";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -224,40 +215,23 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  190 => 73,  152 => 41,  146 => 38,  137 => 34,  133 => 32,  129 => 31,  114 => 18,  108 => 15,  104 => 13,  98 => 10,  94 => 8,  91 => 7,  81 => 6,  60 => 3,  37 => 1,);
+        return array (  185 => 56,  147 => 24,  141 => 21,  132 => 17,  128 => 15,  124 => 14,  120 => 12,  110 => 11,  97 => 8,  92 => 7,  82 => 6,  61 => 3,  38 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block title %}LineShop
+{% block title %}LineshoP Welcome !
+{% endblock %}
+
+{% block stylesheets %}
+\t{{ parent() }}
+\t<link rel=\"stylesheet\" href=\"{{ asset('styles/home.css') }}\">
 {% endblock %}
 
 {% block body %}
-\t{% if session.user is defined %}
-\t\t<p class=\"text\">
-\t\t\tWelcome aaa@a.fr you can
-\t\t\t<a class=\"logout\" href=\"{{path('app_logout')}}\">Logout</a>
-\t\t</p>
-\t{% else %}
-\t\t<p class=\"text\">
-\t\t\tWelcome, you can
-\t\t\t<a class=\"logout\" href=\"{{path('app_login')}}\">login</a>
-\t\t</p>
-\t{% endif %}
-\t<ul>
-\t\t<li>
-\t\t\t<a href=\"#\">All Categories</a>
-\t\t</li>
-\t\t<li>
-\t\t\t<a href=\"#\">Consoles</a>
-\t\t</li>
-\t\t<li>
-\t\t\t<a href=\"#\">Jeux</a>
-\t\t</li>
-\t</ul>
-\t<div class=\"container mt-5\">
+\t<div class=\"container mt-4\">
 \t\t<div class=\"row\">
 \t\t\t{% for article in articles %}
 \t\t\t\t<div class=\"col-md-3 mb-4\">
@@ -303,11 +277,7 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
 \t\t\t{% endfor %}
 \t\t</div>
 \t</div>
-
-\t<script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script>
-\t<script src=\"https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js\"></script>
-\t<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js\"></script>
-</body>{% endblock %}
+{% endblock %}
 ", "article/index.html.twig", "/Users/jordan/Library/Mobile Documents/com~apple~CloudDocs/Formation/AFPA Dev Web/Back/Symfony/lineshop/templates/article/index.html.twig");
     }
 }
