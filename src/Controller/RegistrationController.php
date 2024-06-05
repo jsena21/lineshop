@@ -34,9 +34,12 @@ class RegistrationController extends AbstractController
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('password')->getData()
                 )
             );
+
+            // Assign the default role
+            $user->setRoles(['ROLE_USER']);
 
             $entityManager->persist($user);
             $entityManager->flush();
@@ -56,9 +59,10 @@ class RegistrationController extends AbstractController
 
             return $this->redirectToRoute('app_login');
         }
-
+        // dd($user);
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form,
+            'user' => $user,
         ]);
     }
 

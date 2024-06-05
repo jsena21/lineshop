@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello
+	{{ app.user.prenom }}
+	{{ app.user.nom }}!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row justify-content-center" style="height: 80vh; padding-top: 5vh;">
+			<div class="col-12 col-md-6 col-lg-4">
+				<h1>Account Details</h1>
+				<p>Prénom :
+					{{ app.user.prenom }}</p>
+				<p>Nom :
+					{{ app.user.nom }}</p>
+				<p>Pseudo :
+					{{ app.user.pseudo }}</p>
+				<p>Email :
+					{{ app.user.email }}</p>
+				<p>Adresse :
+					{{ app.user.adresse }}</p>
+				<p>Ville :
+					{{ app.user.ville }}</p>
+				<p>Code postal :
+					{{ app.user.codePostal }}</p>
+				<a href="{{ path('account_edit') }}">Edit Account</a>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}
