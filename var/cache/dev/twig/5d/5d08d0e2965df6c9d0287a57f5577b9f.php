@@ -137,9 +137,12 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
 
 \t\t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t\t\t<div class=\"col-3 text-right\">
-\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn btn-success btn-block\">
+\t\t\t\t\t\t\t\t\t\t\t<a href=\"";
+            // line 41
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_article_add_to_cart", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 41)]), "html", null, true);
+            yield "\" class=\"btn btn-success btn-block\">
 \t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa-solid fa-cart-plus\"></i>
-\t\t\t\t\t\t\t\t\t\t\t</button>
+\t\t\t\t\t\t\t\t\t\t\t</a>
 \t\t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t</div>
@@ -186,7 +189,7 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  156 => 52,  118 => 20,  112 => 17,  103 => 13,  99 => 11,  95 => 10,  91 => 8,  81 => 7,  60 => 3,  37 => 1,);
+        return array (  159 => 52,  142 => 41,  118 => 20,  112 => 17,  103 => 13,  99 => 11,  95 => 10,  91 => 8,  81 => 7,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -231,9 +234,9 @@ class __TwigTemplate_8224fa8e715bc2253b33fa61b88f5573 extends Template
 
 \t\t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t\t\t<div class=\"col-3 text-right\">
-\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn btn-success btn-block\">
+\t\t\t\t\t\t\t\t\t\t\t<a href=\"{{ path('app_article_add_to_cart', {'id': article.id}) }}\" class=\"btn btn-success btn-block\">
 \t\t\t\t\t\t\t\t\t\t\t\t<i class=\"fa-solid fa-cart-plus\"></i>
-\t\t\t\t\t\t\t\t\t\t\t</button>
+\t\t\t\t\t\t\t\t\t\t\t</a>
 \t\t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t</div>

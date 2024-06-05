@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Panier;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
@@ -11,6 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Form\ArticleFilterType;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
+
 
 class ArticleController extends AbstractController
 {
@@ -36,13 +42,34 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/article/new', name: 'app_article_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $imageFile->move($this->getParameter('images_directory'), $newFilename);
+                } catch (FileException $e) {
+                    dd($e->getMessage());
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $article->setImage($newFilename);
+            }
+
             $entityManager->persist($article);
             $entityManager->flush();
 
@@ -90,5 +117,25 @@ class ArticleController extends AbstractController
         }
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/add-to-cart', name: 'app_article_add_to_cart', methods: ['GET'])]
+    public function addToCart(Article $article, SessionInterface $session): Response
+    {
+        $panier = $session->get('panier', new Panier());
+
+        $articleData = [
+            'id' => $article->getId(),
+            'nom' => $article->getNom(),
+            'quantite' => 1,
+            'prix' => $article->getPrix(),
+        ];
+
+        $panier->add($articleData);
+        $session->set('panier', $panier);
+
+        $this->addFlash('success', 'Article added to cart.');
+
+        return $this->redirectToRoute('app_article_index');
     }
 }

@@ -31,13 +31,12 @@ footer a {
 
 }
 
+.fa-cart-shopping{
+    color: green;
+}
+
 #item-count,
 #total-amount {
     color: white;
     text-align: center;
 }
-
-/* img {
-
-    object-fit: contain;
-} */

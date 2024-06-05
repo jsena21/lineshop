@@ -74,7 +74,12 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 
 \t\t\t\t\t<div class=\"align-items-center text-success ms-auto\">
 \t\t\t\t\t\t<div class=\"cart-info me-3\">
-\t\t\t\t\t\t\t<i class=\"fa-solid fa-cart-shopping fa-2x\"></i>
+\t\t\t\t\t\t\t<a href=\"";
+        // line 26
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier");
+        yield "\">
+\t\t\t\t\t\t\t\t<i class=\"fa-solid fa-cart-shopping fa-2x\"></i>
+\t\t\t\t\t\t\t</a>
 \t\t\t\t\t\t\t<div>
 \t\t\t\t\t\t\t\t<div>Items</div>
 \t\t\t\t\t\t\t\t<div id=\"item-count\">0</div>
@@ -91,34 +96,34 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 
 
 \t\t\t\t\t\t\t\t";
-        // line 42
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 42, $this->source); })()), "user", [], "any", false, false, false, 42)) {
-            // line 43
+        // line 44
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 44, $this->source); })()), "user", [], "any", false, false, false, 44)) {
+            // line 45
             yield "\t\t\t\t\t\t\t\t\t<div class=\"mb-3\">
 \t\t\t\t\t\t\t\t\t\tWelcome
 \t\t\t\t\t\t\t\t\t\t";
-            // line 45
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 45, $this->source); })()), "user", [], "any", false, false, false, 45), "email", [], "any", false, false, false, 45), "html", null, true);
+            // line 47
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 47, $this->source); })()), "user", [], "any", false, false, false, 47), "email", [], "any", false, false, false, 47), "html", null, true);
             yield "
 \t\t\t\t\t\t\t\t\t\t! You can
 \t\t\t\t\t\t\t\t\t\t<a href=\"";
-            // line 47
+            // line 49
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\">Logout</a>.
 \t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t";
         } else {
-            // line 50
+            // line 52
             yield "\t\t\t\t\t\t\t\t\t<div class=\"mb-3\">
 \t\t\t\t\t\t\t\t\t\tUser not connected ! You can
 \t\t\t\t\t\t\t\t\t\t<a href=\"";
-            // line 52
+            // line 54
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             yield "\">Login</a>.
 \t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t";
         }
-        // line 55
+        // line 57
         yield "
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
@@ -128,11 +133,11 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 \t\t\t\t\t\t\t<div class=\"col\">
 \t\t\t\t\t\t\t\t<a class=\"btn btn-success text-white text-decoration-none me-3\" href=\"/\" role=\"button\">All Categories</a>
 \t\t\t\t\t\t\t\t<a class=\"btn btn-success text-white text-decoration-none me-3\" href=\"";
-        // line 63
+        // line 65
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_consoles");
         yield "\" role=\"button\">Consoles</a>
 \t\t\t\t\t\t\t\t<a class=\"btn btn-success text-white text-decoration-none\" href=\"";
-        // line 64
+        // line 66
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_jeux");
         yield "\" role=\"button\">Games</a>
 \t\t\t\t\t\t\t</div>
@@ -142,9 +147,9 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 
 \t\t\t\t<main>
 \t\t\t\t\t";
-        // line 71
+        // line 73
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 72
+        // line 74
         yield "\t\t\t\t</main>
 
 \t\t\t\t<footer
@@ -166,9 +171,9 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 \t\t\t\t</footer>
 
 \t\t\t\t";
-        // line 92
+        // line 94
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 101
+        // line 103
         yield "\t\t\t</body>
 \t\t</html>
 \t</body>
@@ -226,7 +231,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         return; yield '';
     }
 
-    // line 71
+    // line 73
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -245,7 +250,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         return; yield '';
     }
 
-    // line 92
+    // line 94
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -255,10 +260,10 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 93
+        // line 95
         yield "\t\t\t\t\t";
         yield from $this->unwrap()->yieldBlock('importmap', $context, $blocks);
-        // line 96
+        // line 98
         yield "\t\t\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js\"></script>
 \t\t\t\t\t<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js\"></script>
 \t\t\t\t\t<script defer src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>
@@ -273,7 +278,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         return; yield '';
     }
 
-    // line 93
+    // line 95
     public function block_importmap($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -283,7 +288,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "importmap"));
 
-        // line 94
+        // line 96
         yield "\t\t\t\t\t\t";
         yield $this->env->getRuntime('Symfony\Bridge\Twig\Extension\ImportMapRuntime')->importmap("app");
         yield "
@@ -318,7 +323,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  287 => 94,  277 => 93,  262 => 96,  259 => 93,  249 => 92,  230 => 71,  218 => 11,  208 => 10,  187 => 6,  172 => 101,  170 => 92,  148 => 72,  146 => 71,  136 => 64,  132 => 63,  122 => 55,  116 => 52,  112 => 50,  106 => 47,  101 => 45,  97 => 43,  95 => 42,  64 => 13,  62 => 10,  58 => 8,  56 => 6,  49 => 1,);
+        return array (  292 => 96,  282 => 95,  267 => 98,  264 => 95,  254 => 94,  235 => 73,  223 => 11,  213 => 10,  192 => 6,  177 => 103,  175 => 94,  153 => 74,  151 => 73,  141 => 66,  137 => 65,  127 => 57,  121 => 54,  117 => 52,  111 => 49,  106 => 47,  102 => 45,  100 => 44,  79 => 26,  64 => 13,  62 => 10,  58 => 8,  56 => 6,  49 => 1,);
     }
 
     public function getSourceContext()
@@ -348,7 +353,9 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 
 \t\t\t\t\t<div class=\"align-items-center text-success ms-auto\">
 \t\t\t\t\t\t<div class=\"cart-info me-3\">
-\t\t\t\t\t\t\t<i class=\"fa-solid fa-cart-shopping fa-2x\"></i>
+\t\t\t\t\t\t\t<a href=\"{{ path('app_panier') }}\">
+\t\t\t\t\t\t\t\t<i class=\"fa-solid fa-cart-shopping fa-2x\"></i>
+\t\t\t\t\t\t\t</a>
 \t\t\t\t\t\t\t<div>
 \t\t\t\t\t\t\t\t<div>Items</div>
 \t\t\t\t\t\t\t\t<div id=\"item-count\">0</div>

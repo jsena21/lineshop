@@ -58,6 +58,7 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('app_panier');
     }
 
+
     #[Route('/panier/deleteOne', name: 'app_panier_delete_one')]
     public function deleteOne(Request $request, SessionInterface $session): Response
     {

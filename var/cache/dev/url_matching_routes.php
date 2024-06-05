@@ -62,10 +62,11 @@ return [
                     .'|/edit(*:235)'
                     .'|(*:243)'
                 .')'
+                .'|/([^/]++)/add\\-to\\-cart(*:275)'
                 .'|/categorie/([^/]++)(?'
-                    .'|(*:274)'
-                    .'|/edit(*:287)'
-                    .'|(*:295)'
+                    .'|(*:305)'
+                    .'|/edit(*:318)'
+                    .'|(*:326)'
                 .')'
             .')/?$}sDu',
     ],
@@ -81,9 +82,10 @@ return [
         222 => [[['_route' => 'app_article_show', '_controller' => 'App\\Controller\\ArticleController::show'], ['id'], ['GET' => 0], null, false, true, null]],
         235 => [[['_route' => 'app_article_edit', '_controller' => 'App\\Controller\\ArticleController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         243 => [[['_route' => 'app_article_delete', '_controller' => 'App\\Controller\\ArticleController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        274 => [[['_route' => 'app_categorie_show', '_controller' => 'App\\Controller\\CategorieController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        287 => [[['_route' => 'app_categorie_edit', '_controller' => 'App\\Controller\\CategorieController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        295 => [
+        275 => [[['_route' => 'app_article_add_to_cart', '_controller' => 'App\\Controller\\ArticleController::addToCart'], ['id'], ['GET' => 0], null, false, false, null]],
+        305 => [[['_route' => 'app_categorie_show', '_controller' => 'App\\Controller\\CategorieController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        318 => [[['_route' => 'app_categorie_edit', '_controller' => 'App\\Controller\\CategorieController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        326 => [
             [['_route' => 'app_categorie_delete', '_controller' => 'App\\Controller\\CategorieController::delete'], ['id'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
