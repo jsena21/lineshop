@@ -18,11 +18,16 @@ return [
             [['_route' => 'app_article_index', '_controller' => 'App\\Controller\\ArticleController::index'], null, ['GET' => 0], null, false, false, null],
             [['_route' => 'home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null],
         ],
-        '/article/new' => [[['_route' => 'app_article_new', '_controller' => 'App\\Controller\\ArticleController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/editor/article/new' => [[['_route' => 'app_article_new', '_controller' => 'App\\Controller\\ArticleController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/categorie' => [[['_route' => 'app_categorie_index', '_controller' => 'App\\Controller\\CategorieController::index'], null, ['GET' => 0], null, true, false, null]],
         '/categorie/new' => [[['_route' => 'app_categorie_new', '_controller' => 'App\\Controller\\CategorieController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/categorie/see/consoles' => [[['_route' => 'category_consoles', '_controller' => 'App\\Controller\\CategorieController::consoles'], null, null, null, false, false, null]],
         '/categorie/see/jeux' => [[['_route' => 'category_jeux', '_controller' => 'App\\Controller\\CategorieController::jeux'], null, null, null, false, false, null]],
+        '/panier' => [[['_route' => 'app_panier', '_controller' => 'App\\Controller\\PanierController::index'], null, null, null, false, false, null]],
+        '/panier/add' => [[['_route' => 'app_panier_add', '_controller' => 'App\\Controller\\PanierController::add'], null, null, null, false, false, null]],
+        '/panier/delete' => [[['_route' => 'app_panier_delete', '_controller' => 'App\\Controller\\PanierController::delete'], null, null, null, false, false, null]],
+        '/panier/deleteOne' => [[['_route' => 'app_panier_delete_one', '_controller' => 'App\\Controller\\PanierController::deleteOne'], null, null, null, false, false, null]],
+        '/panier/clear' => [[['_route' => 'app_panier_clear', '_controller' => 'App\\Controller\\PanierController::clear'], null, null, null, false, false, null]],
         '/register' => [
             [['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null],
             [['_route' => 'register', '_controller' => 'App\\Controller\\SecurityController::register'], null, null, null, false, false, null],
@@ -57,10 +62,11 @@ return [
                     .'|/edit(*:235)'
                     .'|(*:243)'
                 .')'
+                .'|/([^/]++)/add\\-to\\-cart(*:275)'
                 .'|/categorie/([^/]++)(?'
-                    .'|(*:274)'
-                    .'|/edit(*:287)'
-                    .'|(*:295)'
+                    .'|(*:305)'
+                    .'|/edit(*:318)'
+                    .'|(*:326)'
                 .')'
             .')/?$}sDu',
     ],
@@ -76,9 +82,10 @@ return [
         222 => [[['_route' => 'app_article_show', '_controller' => 'App\\Controller\\ArticleController::show'], ['id'], ['GET' => 0], null, false, true, null]],
         235 => [[['_route' => 'app_article_edit', '_controller' => 'App\\Controller\\ArticleController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         243 => [[['_route' => 'app_article_delete', '_controller' => 'App\\Controller\\ArticleController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        274 => [[['_route' => 'app_categorie_show', '_controller' => 'App\\Controller\\CategorieController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        287 => [[['_route' => 'app_categorie_edit', '_controller' => 'App\\Controller\\CategorieController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        295 => [
+        275 => [[['_route' => 'app_article_add_to_cart', '_controller' => 'App\\Controller\\ArticleController::addToCart'], ['id'], ['GET' => 0], null, false, false, null]],
+        305 => [[['_route' => 'app_categorie_show', '_controller' => 'App\\Controller\\CategorieController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        318 => [[['_route' => 'app_categorie_edit', '_controller' => 'App\\Controller\\CategorieController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        326 => [
             [['_route' => 'app_categorie_delete', '_controller' => 'App\\Controller\\CategorieController::delete'], ['id'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

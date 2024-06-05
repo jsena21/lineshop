@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Form\ArticleFilterType;
+use App\Entity\Panier;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class ArticleController extends AbstractController
 {
@@ -35,7 +37,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/article/new', name: 'app_article_new', methods: ['GET', 'POST'])]
+    #[Route('/editor/article/new', name: 'app_article_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $article = new Article();
@@ -90,5 +92,25 @@ class ArticleController extends AbstractController
         }
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/add-to-cart', name: 'app_article_add_to_cart', methods: ['GET'])]
+    public function addToCart(Article $article, SessionInterface $session): Response
+    {
+        $panier = $session->get('panier', new Panier());
+
+        $articleData = [
+            'id' => $article->getId(),
+            'nom' => $article->getNom(),
+            'quantite' => 1,
+            'prix' => $article->getPrix(),
+        ];
+
+        $panier->add($articleData);
+        $session->set('panier', $panier);
+
+        $this->addFlash('success', 'Article added to cart.');
+
+        return $this->redirectToRoute('app_article_index');
     }
 }

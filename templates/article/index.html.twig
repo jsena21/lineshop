@@ -14,7 +14,7 @@
 			{% for article in articles %}
 				<div class="col-md-3 mb-4">
 					<div class="card border border-success shadow-lg">
-						<img src="{{ asset('images/' ~ article.image) }}" width="auto" height="200px" alt="{{ article.description }}">
+						<img src="{{ asset('images/' ~ article.image) }}" width="auto" height="200px" alt="{{ article.nom }}">
 						<div class="card-body bg-success-subtle border-top border-success">
 							<div class="row justify-content-center align-items-center">
 								<div class="col-8 border-right border-success">
@@ -42,9 +42,9 @@
 
 										</div>
 										<div class="col-3 text-right">
-											<button class="btn btn-success btn-block">
+											<a href="{{ path('app_article_add_to_cart', {'id': article.id}) }}" class="btn btn-success btn-block">
 												<i class="fa-solid fa-cart-plus"></i>
-											</button>
+											</a>						
 										</div>
 									</div>
 								</div>
