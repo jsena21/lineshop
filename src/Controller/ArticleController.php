@@ -98,6 +98,6 @@ class ArticleController extends AbstractController
 
         $this->addFlash('success', 'Article added to cart.');
 
-        return $this->redirectToRoute('app_article_index');
+        return $this->redirectToRoute('app_home');
     }
 }
