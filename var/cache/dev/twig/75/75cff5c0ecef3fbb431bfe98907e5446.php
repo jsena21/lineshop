@@ -82,11 +82,17 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 \t\t\t\t\t\t\t</a>
 \t\t\t\t\t\t\t<div>
 \t\t\t\t\t\t\t\t<div>Items</div>
-\t\t\t\t\t\t\t\t<div id=\"item-count\">0</div>
+\t\t\t\t\t\t\t\t<div id=\"item-count\">";
+        // line 31
+        (( !(null === CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 31, $this->source); })()), "session", [], "any", false, false, false, 31), "get", ["panier"], "method", false, false, false, 31))) ? (yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, ($context["app"] ?? null), "session", [], "any", false, true, false, 31), "get", ["panier"], "method", false, true, false, 31), "getTotalItems", [], "method", true, true, false, 31)) ? (Twig\Extension\CoreExtension::default(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, ($context["app"] ?? null), "session", [], "any", false, true, false, 31), "get", ["panier"], "method", false, true, false, 31), "getTotalItems", [], "method", false, false, false, 31), 0)) : (0)), "html", null, true)) : (yield 0));
+        yield "</div>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div>
 \t\t\t\t\t\t\t\t<div>Total</div>
-\t\t\t\t\t\t\t\t<div id=\"total-amount\">0.00 €</div>
+\t\t\t\t\t\t\t\t<div id=\"total-amount\">";
+        // line 35
+        (( !(null === CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 35, $this->source); })()), "session", [], "any", false, false, false, 35), "get", ["panier"], "method", false, false, false, 35))) ? (yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, ($context["app"] ?? null), "session", [], "any", false, true, false, 35), "get", ["panier"], "method", false, true, false, 35), "getTotalAmount", [], "method", true, true, false, 35)) ? (Twig\Extension\CoreExtension::default(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, ($context["app"] ?? null), "session", [], "any", false, true, false, 35), "get", ["panier"], "method", false, true, false, 35), "getTotalAmount", [], "method", false, false, false, 35), "0")) : ("0")), "html", null, true)) : (yield "0"));
+        yield "€</div>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</nav>
@@ -115,7 +121,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
         } else {
             // line 52
             yield "\t\t\t\t\t\t\t\t\t<div class=\"mb-3\">
-\t\t\t\t\t\t\t\t\t\tUser not connected ! You can
+\t\t\t\t\t\t\t\t\t\tYou can
 \t\t\t\t\t\t\t\t\t\t<a href=\"";
             // line 54
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
@@ -323,7 +329,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  292 => 96,  282 => 95,  267 => 98,  264 => 95,  254 => 94,  235 => 73,  223 => 11,  213 => 10,  192 => 6,  177 => 103,  175 => 94,  153 => 74,  151 => 73,  141 => 66,  137 => 65,  127 => 57,  121 => 54,  117 => 52,  111 => 49,  106 => 47,  102 => 45,  100 => 44,  79 => 26,  64 => 13,  62 => 10,  58 => 8,  56 => 6,  49 => 1,);
+        return array (  298 => 96,  288 => 95,  273 => 98,  270 => 95,  260 => 94,  241 => 73,  229 => 11,  219 => 10,  198 => 6,  183 => 103,  181 => 94,  159 => 74,  157 => 73,  147 => 66,  143 => 65,  133 => 57,  127 => 54,  123 => 52,  117 => 49,  112 => 47,  108 => 45,  106 => 44,  94 => 35,  87 => 31,  79 => 26,  64 => 13,  62 => 10,  58 => 8,  56 => 6,  49 => 1,);
     }
 
     public function getSourceContext()
@@ -358,11 +364,11 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 \t\t\t\t\t\t\t</a>
 \t\t\t\t\t\t\t<div>
 \t\t\t\t\t\t\t\t<div>Items</div>
-\t\t\t\t\t\t\t\t<div id=\"item-count\">0</div>
+\t\t\t\t\t\t\t\t<div id=\"item-count\">{{ app.session.get('panier') is not null ? app.session.get('panier').getTotalItems() | default(0) : 0 }}</div>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div>
 \t\t\t\t\t\t\t\t<div>Total</div>
-\t\t\t\t\t\t\t\t<div id=\"total-amount\">0.00 €</div>
+\t\t\t\t\t\t\t\t<div id=\"total-amount\">{{ app.session.get('panier') is not null ? app.session.get('panier').getTotalAmount() | default('0') : '0' }}€</div>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</nav>
@@ -380,7 +386,7 @@ class __TwigTemplate_46bed69a2c7480f83d67aacb70859e81 extends Template
 \t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t{% else %}
 \t\t\t\t\t\t\t\t\t<div class=\"mb-3\">
-\t\t\t\t\t\t\t\t\t\tUser not connected ! You can
+\t\t\t\t\t\t\t\t\t\tYou can
 \t\t\t\t\t\t\t\t\t\t<a href=\"{{ path('app_login') }}\">Login</a>.
 \t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t{% endif %}

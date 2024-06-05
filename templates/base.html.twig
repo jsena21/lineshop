@@ -28,11 +28,11 @@
 							</a>
 							<div>
 								<div>Items</div>
-								<div id="item-count">0</div>
+								<div id="item-count">{{ app.session.get('panier') is not null ? app.session.get('panier').getTotalItems() | default(0) : 0 }}</div>
 							</div>
 							<div>
 								<div>Total</div>
-								<div id="total-amount">0.00 €</div>
+								<div id="total-amount">{{ app.session.get('panier') is not null ? app.session.get('panier').getTotalAmount() | default('0') : '0' }}€</div>
 							</div>
 						</div>
 					</nav>
@@ -50,7 +50,7 @@
 									</div>
 								{% else %}
 									<div class="mb-3">
-										User not connected ! You can
+										You can
 										<a href="{{ path('app_login') }}">Login</a>.
 									</div>
 								{% endif %}
