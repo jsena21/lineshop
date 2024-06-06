@@ -31,7 +31,8 @@ class PanierController extends AbstractController
             'id' => $request->get('id'),
             'nom' => $request->get('nom'),
             'quantite' => $request->get('quantite', 1),
-            'prix' => $request->get('prix')
+            'prix' => $request->get('prix'),
+            'image' => $request->get('image'),
         ];
 
         $panier->add($article);
