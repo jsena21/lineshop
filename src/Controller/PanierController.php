@@ -31,8 +31,7 @@ class PanierController extends AbstractController
             'id' => $request->get('id'),
             'nom' => $request->get('nom'),
             'quantite' => $request->get('quantite', 1),
-            'prix' => $request->get('prix'),
-            'image' => $request->get('image')
+            'prix' => $request->get('prix')
         ];
 
         $panier->add($article);
@@ -50,8 +49,7 @@ class PanierController extends AbstractController
             'id' => $request->get('id'),
             'nom' => $request->get('nom'),
             'quantite' => 1,
-            'prix' => $request->get('prix'),
-            'image' => $request->get('image')
+            'prix' => $request->get('prix')
         ];
 
         $panier->delete($article);
@@ -59,6 +57,7 @@ class PanierController extends AbstractController
 
         return $this->redirectToRoute('app_panier');
     }
+
 
     #[Route('/panier/deleteOne', name: 'app_panier_delete_one')]
     public function deleteOne(Request $request, SessionInterface $session): Response
@@ -69,8 +68,7 @@ class PanierController extends AbstractController
             'id' => $request->get('id'),
             'nom' => $request->get('nom'),
             'quantite' => 1,
-            'prix' => $request->get('prix'),
-            'image' => $request->get('image')
+            'prix' => $request->get('prix')
         ];
 
         $panier->deleteOne($article);
@@ -83,23 +81,6 @@ class PanierController extends AbstractController
     public function clear(SessionInterface $session): Response
     {
         $panier = new Panier();
-        $session->set('panier', $panier);
-
-        return $this->redirectToRoute('app_panier');
-    }
-
-    #[Route('/panier/update', name: 'app_panier_update', methods: ['POST'])]
-    public function update(Request $request, SessionInterface $session): Response
-    {
-        $panier = $session->get('panier', new Panier());
-
-        // Récupérer toutes les quantités transmises via la requête
-        $quantities = $request->request->all('quantities');
-
-        foreach ($quantities as $id => $quantity) {
-            $panier->updateQuantity($id, (int)$quantity);
-        }
-
         $session->set('panier', $panier);
 
         return $this->redirectToRoute('app_panier');
