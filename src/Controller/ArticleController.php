@@ -73,7 +73,7 @@ class ArticleController extends AbstractController
     #[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->getPayload()->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->get('_token'))) {
             $entityManager->remove($article);
             $entityManager->flush();
         }
@@ -91,12 +91,13 @@ class ArticleController extends AbstractController
             'nom' => $article->getNom(),
             'quantite' => 1,
             'prix' => $article->getPrix(),
+            'image' => $article->getImage(),
         ];
 
         $panier->add($articleData);
         $session->set('panier', $panier);
 
-        $this->addFlash('success', 'Article added to cart.');
+        $this->addFlash('success', 'Article ajouté au panier.');
 
         return $this->redirectToRoute('app_home');
     }
