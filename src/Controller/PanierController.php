@@ -18,7 +18,7 @@ class PanierController extends AbstractController
 
         return $this->render('panier/index.html.twig', [
             'controller_name' => 'PanierController',
-            'panier' => $panier->getPanier(),
+            'panier' => $panier->getPanier()
         ]);
     }
 
@@ -31,7 +31,8 @@ class PanierController extends AbstractController
             'id' => $request->get('id'),
             'nom' => $request->get('nom'),
             'quantite' => $request->get('quantite', 1),
-            'prix' => $request->get('prix')
+            'prix' => $request->get('prix'),
+            'image' => $request->get('prix')
         ];
 
         $panier->add($article);
@@ -81,6 +82,23 @@ class PanierController extends AbstractController
     public function clear(SessionInterface $session): Response
     {
         $panier = new Panier();
+        $session->set('panier', $panier);
+
+        return $this->redirectToRoute('app_panier');
+    }
+
+    #[Route('/panier/update', name: 'app_panier_update', methods: ['POST'])]
+    public function update(Request $request, SessionInterface $session): Response
+    {
+        $panier = $session->get('panier', new Panier());
+
+        // Récupérer toutes les quantités transmises via la requête
+        $quantities = $request->request->all('quantities');
+
+        foreach ($quantities as $id => $quantity) {
+            $panier->updateQuantity($id, (int)$quantity);
+        }
+
         $session->set('panier', $panier);
 
         return $this->redirectToRoute('app_panier');

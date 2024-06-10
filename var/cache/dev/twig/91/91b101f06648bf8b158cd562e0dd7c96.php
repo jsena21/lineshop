@@ -91,7 +91,6 @@ class __TwigTemplate_99f9aea8e49926290d4eae1cbae7696f extends Template
         yield "\t<style>
 \t\t.example-wrapper {
 \t\t\tmargin: 1em auto;
-\t\t\tmax-width: 800px;
 \t\t\twidth: 95%;
 \t\t\tfont: 18px / 1.5 sans-serif;
 \t\t}
@@ -127,12 +126,13 @@ class __TwigTemplate_99f9aea8e49926290d4eae1cbae7696f extends Template
 \t\t<h1>Panier</h1>
 
 \t\t";
-        // line 45
-        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["panier"]) || array_key_exists("panier", $context) ? $context["panier"] : (function () { throw new RuntimeError('Variable "panier" does not exist.', 45, $this->source); })())) > 0)) {
-            // line 46
+        // line 44
+        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["panier"]) || array_key_exists("panier", $context) ? $context["panier"] : (function () { throw new RuntimeError('Variable "panier" does not exist.', 44, $this->source); })())) > 0)) {
+            // line 45
             yield "\t\t\t<table>
 \t\t\t\t<thead>
 \t\t\t\t\t<tr>
+\t\t\t\t\t\t<th>Image</th>
 \t\t\t\t\t\t<th>Nom</th>
 \t\t\t\t\t\t<th>Quantité</th>
 \t\t\t\t\t\t<th>Prix Unitaire</th>
@@ -148,76 +148,88 @@ class __TwigTemplate_99f9aea8e49926290d4eae1cbae7696f extends Template
             foreach ($context['_seq'] as $context["id"] => $context["article"]) {
                 // line 58
                 yield "\t\t\t\t\t\t<tr>
-\t\t\t\t\t\t\t<td>";
-                // line 59
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 59), "html", null, true);
-                yield "</td>
-\t\t\t\t\t\t\t<td>";
+\t\t\t\t\t\t\t<td>
+\t\t\t\t\t\t\t\t<img src=\"";
                 // line 60
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "quantite", [], "any", false, false, false, 60), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("images/" . CoreExtension::getAttribute($this->env, $this->source, $context["article"], "image", [], "any", false, false, false, 60))), "html", null, true);
+                yield "\" alt=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 60), "html", null, true);
+                yield "\">
+\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t<td>";
+                // line 62
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 62), "html", null, true);
                 yield "</td>
 \t\t\t\t\t\t\t<td>";
-                // line 61
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 61), "html", null, true);
+                // line 63
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "quantite", [], "any", false, false, false, 63), "html", null, true);
+                yield "</td>
+\t\t\t\t\t\t\t<td>";
+                // line 64
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 64), "html", null, true);
                 yield "
 \t\t\t\t\t\t\t\t€</td>
 \t\t\t\t\t\t\t<td>";
-                // line 63
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 63) * CoreExtension::getAttribute($this->env, $this->source, $context["article"], "quantite", [], "any", false, false, false, 63)), "html", null, true);
+                // line 66
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 66) * CoreExtension::getAttribute($this->env, $this->source, $context["article"], "quantite", [], "any", false, false, false, 66)), "html", null, true);
                 yield "
 \t\t\t\t\t\t\t\t€</td>
 \t\t\t\t\t\t\t<td class=\"actions\">
 \t\t\t\t\t\t\t\t<form action=\"";
-                // line 66
+                // line 69
                 yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier_add");
                 yield "\" method=\"post\" style=\"display:inline;\">
 \t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"id\" value=\"";
-                // line 67
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 67), "html", null, true);
+                // line 70
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 70), "html", null, true);
                 yield "\">
 \t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"nom\" value=\"";
-                // line 68
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 68), "html", null, true);
+                // line 71
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 71), "html", null, true);
                 yield "\">
 \t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"prix\" value=\"";
-                // line 69
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 69), "html", null, true);
+                // line 72
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 72), "html", null, true);
+                yield "\">
+\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"image\" value=\"";
+                // line 73
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "image", [], "any", false, false, false, 73), "html", null, true);
                 yield "\">
 \t\t\t\t\t\t\t\t\t<button type=\"submit\">Ajouter</button>
 \t\t\t\t\t\t\t\t</form>
 \t\t\t\t\t\t\t\t<form action=\"";
-                // line 72
+                // line 76
                 yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier_delete_one");
                 yield "\" method=\"post\" style=\"display:inline;\">
 \t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"id\" value=\"";
-                // line 73
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 73), "html", null, true);
+                // line 77
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 77), "html", null, true);
                 yield "\">
 \t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"nom\" value=\"";
-                // line 74
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 74), "html", null, true);
+                // line 78
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 78), "html", null, true);
                 yield "\">
 \t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"prix\" value=\"";
-                // line 75
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 75), "html", null, true);
+                // line 79
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 79), "html", null, true);
                 yield "\">
 \t\t\t\t\t\t\t\t\t<button type=\"submit\">Supprimer une unité</button>
 \t\t\t\t\t\t\t\t</form>
 \t\t\t\t\t\t\t\t<form action=\"";
-                // line 78
+                // line 82
                 yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier_delete");
                 yield "\" method=\"post\" style=\"display:inline;\">
 \t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"id\" value=\"";
-                // line 79
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 79), "html", null, true);
+                // line 83
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 83), "html", null, true);
                 yield "\">
 \t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"nom\" value=\"";
-                // line 80
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 80), "html", null, true);
+                // line 84
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "nom", [], "any", false, false, false, 84), "html", null, true);
                 yield "\">
 \t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"prix\" value=\"";
-                // line 81
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 81), "html", null, true);
+                // line 85
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["article"], "prix", [], "any", false, false, false, 85), "html", null, true);
                 yield "\">
 \t\t\t\t\t\t\t\t\t<button type=\"submit\">Supprimer</button>
 \t\t\t\t\t\t\t\t</form>
@@ -228,22 +240,22 @@ class __TwigTemplate_99f9aea8e49926290d4eae1cbae7696f extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['id'], $context['article'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 87
+            // line 91
             yield "\t\t\t\t</tbody>
 \t\t\t</table>
 \t\t\t<form action=\"";
-            // line 89
+            // line 93
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier_clear");
             yield "\" method=\"post\">
 \t\t\t\t<button type=\"submit\">Vider le panier</button>
 \t\t\t</form>
 \t\t";
         } else {
-            // line 93
+            // line 97
             yield "\t\t\t<p>Votre panier est vide.</p>
 \t\t";
         }
-        // line 95
+        // line 99
         yield "
 \t</div>
 ";
@@ -277,7 +289,7 @@ class __TwigTemplate_99f9aea8e49926290d4eae1cbae7696f extends Template
      */
     public function getDebugInfo()
     {
-        return array (  247 => 95,  243 => 93,  236 => 89,  232 => 87,  220 => 81,  216 => 80,  212 => 79,  208 => 78,  202 => 75,  198 => 74,  194 => 73,  190 => 72,  184 => 69,  180 => 68,  176 => 67,  172 => 66,  166 => 63,  161 => 61,  157 => 60,  153 => 59,  150 => 58,  146 => 57,  133 => 46,  131 => 45,  91 => 7,  81 => 6,  60 => 3,  37 => 1,);
+        return array (  259 => 99,  255 => 97,  248 => 93,  244 => 91,  232 => 85,  228 => 84,  224 => 83,  220 => 82,  214 => 79,  210 => 78,  206 => 77,  202 => 76,  196 => 73,  192 => 72,  188 => 71,  184 => 70,  180 => 69,  174 => 66,  169 => 64,  165 => 63,  161 => 62,  154 => 60,  150 => 58,  146 => 57,  132 => 45,  130 => 44,  91 => 7,  81 => 6,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -291,7 +303,6 @@ class __TwigTemplate_99f9aea8e49926290d4eae1cbae7696f extends Template
 \t<style>
 \t\t.example-wrapper {
 \t\t\tmargin: 1em auto;
-\t\t\tmax-width: 800px;
 \t\t\twidth: 95%;
 \t\t\tfont: 18px / 1.5 sans-serif;
 \t\t}
@@ -330,6 +341,7 @@ class __TwigTemplate_99f9aea8e49926290d4eae1cbae7696f extends Template
 \t\t\t<table>
 \t\t\t\t<thead>
 \t\t\t\t\t<tr>
+\t\t\t\t\t\t<th>Image</th>
 \t\t\t\t\t\t<th>Nom</th>
 \t\t\t\t\t\t<th>Quantité</th>
 \t\t\t\t\t\t<th>Prix Unitaire</th>
@@ -340,6 +352,9 @@ class __TwigTemplate_99f9aea8e49926290d4eae1cbae7696f extends Template
 \t\t\t\t<tbody>
 \t\t\t\t\t{% for id, article in panier %}
 \t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t<td>
+\t\t\t\t\t\t\t\t<img src=\"{{ asset('images/' ~ article.image) }}\" alt=\"{{ article.nom }}\">
+\t\t\t\t\t\t\t</td>
 \t\t\t\t\t\t\t<td>{{ article.nom }}</td>
 \t\t\t\t\t\t\t<td>{{ article.quantite }}</td>
 \t\t\t\t\t\t\t<td>{{ article.prix }}
@@ -351,6 +366,7 @@ class __TwigTemplate_99f9aea8e49926290d4eae1cbae7696f extends Template
 \t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"id\" value=\"{{ article.id }}\">
 \t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"nom\" value=\"{{ article.nom }}\">
 \t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"prix\" value=\"{{ article.prix }}\">
+\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"image\" value=\"{{ article.image }}\">
 \t\t\t\t\t\t\t\t\t<button type=\"submit\">Ajouter</button>
 \t\t\t\t\t\t\t\t</form>
 \t\t\t\t\t\t\t\t<form action=\"{{ path('app_panier_delete_one') }}\" method=\"post\" style=\"display:inline;\">

@@ -129,12 +129,13 @@ class ArticleController extends AbstractController
             'nom' => $article->getNom(),
             'quantite' => 1,
             'prix' => $article->getPrix(),
+            'image' => $article->getImage(),
         ];
 
         $panier->add($articleData);
         $session->set('panier', $panier);
 
-        $this->addFlash('success', 'Article added to cart.');
+        $this->addFlash('success', 'Article ajouté au panier.');
 
         return $this->redirectToRoute('app_article_index');
     }

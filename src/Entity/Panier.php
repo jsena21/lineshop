@@ -74,4 +74,18 @@ class Panier
         }
         return $totalAmount;
     }
+
+    public function clear()
+    {
+        // Vider le panier
+        $this->panier = [];
+    }
+
+    public function updateQuantity($id, $quantity)
+    {
+        // Mise à jour de la quantité d'un article
+        if (isset($this->panier[$id])) {
+            $this->panier[$id]['quantite'] = $quantity;
+        }
+    }
 }
