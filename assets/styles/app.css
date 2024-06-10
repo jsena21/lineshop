@@ -74,6 +74,12 @@ button {
 .actions {
     display: flex;
     justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.actions form {
+    display: inline;
 }
 
 img {

@@ -26,8 +26,9 @@ return [
         '/panier' => [[['_route' => 'app_panier', '_controller' => 'App\\Controller\\PanierController::index'], null, null, null, false, false, null]],
         '/panier/add' => [[['_route' => 'app_panier_add', '_controller' => 'App\\Controller\\PanierController::add'], null, null, null, false, false, null]],
         '/panier/delete' => [[['_route' => 'app_panier_delete', '_controller' => 'App\\Controller\\PanierController::delete'], null, null, null, false, false, null]],
-        '/panier/deleteOne' => [[['_route' => 'app_panier_delete_one', '_controller' => 'App\\Controller\\PanierController::deleteOne'], null, null, null, false, false, null]],
         '/panier/clear' => [[['_route' => 'app_panier_clear', '_controller' => 'App\\Controller\\PanierController::clear'], null, null, null, false, false, null]],
+        '/panier/recalculate' => [[['_route' => 'app_panier_recalculate', '_controller' => 'App\\Controller\\PanierController::recalculate'], null, ['POST' => 0], null, false, false, null]],
+        '/panier/update' => [[['_route' => 'app_panier_update', '_controller' => 'App\\Controller\\PanierController::update'], null, ['POST' => 0], null, false, false, null]],
         '/register' => [
             [['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null],
             [['_route' => 'register', '_controller' => 'App\\Controller\\SecurityController::register'], null, null, null, false, false, null],

@@ -74,4 +74,11 @@ class Panier
         }
         return $totalAmount;
     }
+
+    public function updateQuantity(int $id, int $quantity): void
+    {
+        if (isset($this->panier[$id])) {
+            $this->panier[$id]['quantite'] = $quantity;
+        }
+    }
 }

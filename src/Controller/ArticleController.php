@@ -104,6 +104,7 @@ class ArticleController extends AbstractController
             'nom' => $article->getNom(),
             'quantite' => 1,
             'prix' => $article->getPrix(),
+            'image' => $article->getImage(),
         ];
 
         $panier->add($articleData);

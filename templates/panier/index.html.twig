@@ -4,63 +4,72 @@
 {% endblock %}
 
 {% block body %}
-<style>
+    <div class="example-wrapper container mt-4">
+        <h1 class="text-ceter mb-4">Panier</h1>
 
-</style>
-
-<div class="example-wrapper">
-<h1>Panier</h1>
-
-{% if panier|length > 0 %}
-<table>
-<thead>
-<tr>
-<th>Nom</th>
-<th>Quantité</th>
-<th>Prix Unitaire</th>
-<th>Prix Total</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody>
-{% for id, article in panier %}
-<tr>
-<td>{{ article.nom }}</td>
-<td>{{ article.quantite }}</td>
-<td>{{ article.prix }}
-€</td>
-<td>{{ article.prix * article.quantite }}
-€</td>
-<td class="actions">
-<form action="{{ path('app_panier_add') }}" method="post" style="display:inline;">
-<input type="hidden" name="id" value="{{ article.id }}">
-<input type="hidden" name="nom" value="{{ article.nom }}">
-<input type="hidden" name="prix" value="{{ article.prix }}">
-<button type="submit">Ajouter</button>
-</form>
-<form action="{{ path('app_panier_delete_one') }}" method="post" style="display:inline;">
-<input type="hidden" name="id" value="{{ article.id }}">
-<input type="hidden" name="nom" value="{{ article.nom }}">
-<input type="hidden" name="prix" value="{{ article.prix }}">
-<button type="submit">Supprimer une unité</button>
-</form>
-<form action="{{ path('app_panier_delete') }}" method="post" style="display:inline;">
-<input type="hidden" name="id" value="{{ article.id }}">
-<input type="hidden" name="nom" value="{{ article.nom }}">
-<input type="hidden" name="prix" value="{{ article.prix }}">
-<button type="submit">Supprimer</button>
-</form>
-</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-<form action="{{ path('app_panier_clear') }}" method="post">
-<button type="submit">Vider le panier</button>
-</form>
-{% else %}
-<p>Votre panier est vide.</p>
-{% endif %}
-
-</div>
+        {% if panier|length > 0 %}
+            <form action="{{ path('app_panier_recalculate') }}" method="post">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Nom</th>
+                                <th>Quantité</th>
+                                <th>Prix Unitaire</th>
+                                <th>Prix Total</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for id, article in panier %}
+                                <tr>
+                                    <td><img src="{{ asset('images/' ~ article.image) }}" alt="{{ article.nom }}" style="max-width: 100px;"></td>
+                                    <td>{{ article.nom }}</td>
+                                    <td style="width: 100px;">
+                                    <input type="number" name="quantities[{{ article.id }}]" value="{{ article.quantite }}" min="1" class="form-control" style="width: 70px; margin: auto;">
+                                    </td>
+                                    <td>{{ article.prix }}
+                                        €</td>
+                                    <td>{{ article.prix * article.quantite }}
+                                        €</td>
+                                    <td class="actions">
+                                        {# <form action="{{ path('app_panier_add') }}" method="post" class="d-inline">
+                                            <input type="hidden" name="id" value="{{ article.id }}">
+                                            <input type="hidden" name="nom" value="{{ article.nom }}">
+                                            <input type="hidden" name="prix" value="{{ article.prix }}">
+                                            <input type="hidden" name="image" value="{{ article.image }}">
+                                            <button type="submit" class="btn btn-primary btn-sm">Ajouter</button>
+                                        </form>
+                                        <form action="{{ path('app_panier_delete_one') }}" method="post" class="d-inline">
+                                            <input type="hidden" name="id" value="{{ article.id }}">
+                                            <input type="hidden" name="nom" value="{{ article.nom }}">
+                                            <input type="hidden" name="prix" value="{{ article.prix }}">
+                                            <input type="hidden" name="image" value="{{ article.image }}">
+                                            <button type="submit" class="btn btn-primary btn-sm">Supprimer une unité</button>
+                                        </form> #}
+                                        <form action="{{ path('app_panier_delete') }}" method="post" class="d-inline">
+                                            <input type="hidden" name="id" value="{{ article.id }}">
+                                            <input type="hidden" name="nom" value="{{ article.nom }}">
+                                            <input type="hidden" name="prix" value="{{ article.prix }}">
+                                            <input type="hidden" name="image" value="{{ article.image }}">
+                                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Recalculer</button>
+                </div>    
+            </form> 
+            <form action="{{ path('app_panier_clear') }}" method="post" class="text-center mt-3">
+                <button type="submit" class="btn btn-danger">Vider le panier</button>
+            </form>
+        {% else %}
+            <p class="text-center">Votre panier est vide.</p>
+        {% endif %}
+    </div>
 {% endblock %}
